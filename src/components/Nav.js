@@ -6,7 +6,7 @@ export default function Nav() {
     <nav className="navbar navbar-expand-md navbar-dark bg-dark py-3">
       <div className="container">
         <div className="mx-auto order-0">
-          <Link to="/" className="navbar-brand mx-auto">NodeJS</Link>
+          <Link to="/" className="navbar-brand mx-auto">NodePack</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
             <span className="navbar-toggler-icon"></span>
           </button>

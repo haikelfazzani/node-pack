@@ -4,10 +4,9 @@ export default function Header() {
   return (
 
     <div className="jumbotron text-center w-100">
-      <h1>NodeJs</h1>
+      <h1>NodePack</h1>
       <p className="lead w-75 mx-auto">
-        The definitive source of the best
-        JavaScript libraries, frameworks, and plugins.
+        List of NodeJs libraries, frameworks,modules and packages.
         </p>
 
       <form className="w-50 mx-auto">
