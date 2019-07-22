@@ -44,12 +44,8 @@ export default class AddLibrary extends React.Component {
     return (
       <div className="container py-5 w-50 mx-auto">
 
-        <p>
-          Don't see a library listed? Add it yourself.
-          It takes about 4 seconds.
-          Please make sure the submission is a clientside library,
-          and has at least 80 stars on Github.
-        </p>
+        <h3>ADD SOMETHING HELPFUL</h3>
+        <p>All fields are required *</p>
 
         <form onSubmit={this.handleSubmit} className="mb-3">
 
@@ -74,7 +70,7 @@ export default class AddLibrary extends React.Component {
           <button type="submit" className="btn btn-primary" disabled={this.state.bntDisbale}>
             Submit
           </button>
-          
+
         </form>
 
 

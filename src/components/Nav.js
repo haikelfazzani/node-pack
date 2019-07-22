@@ -13,15 +13,15 @@ export default function Nav() {
         </div>
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
+            
             <li className="nav-item">
               <Link to="/" className="nav-link" >Home</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/about" className="nav-link">About</Link>
-            </li>
+
             <li className="nav-item">
               <Link to="/add-library" className="nav-link">Add Library</Link>
             </li>
+
           </ul>
         </div>
       </div>
