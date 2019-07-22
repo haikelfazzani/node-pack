@@ -29,7 +29,7 @@ export default function Nav() {
           </li>
 
           <li className="nav-item">
-            <Link to="/add-library" className="nav-link">Add Library</Link>
+            <Link to="/add-package" className="nav-link">Add Package</Link>
           </li>
 
         </ul>

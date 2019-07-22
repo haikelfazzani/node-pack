@@ -10,7 +10,7 @@ import categories from '../data/categories';
 const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
 const devLink = "http://localhost:3001/api/node/add/library";
 
-export default class AddLibrary extends React.Component {
+export default class AddPackage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -46,22 +46,22 @@ export default class AddLibrary extends React.Component {
 
         <div className="text-center">
           <h2>ADD SOMETHING HELPFUL</h2>
-          <p className="text-muted m-0">Please make sure the submission is not a fake library, </p>
+          <p className="text-muted m-0">Please make sure the submission is not a fake package (or module), </p>
           <p>All fields are required *</p>
         </div>
 
         <form onSubmit={this.handleSubmit} className="mb-3">
 
           <Input htmlFor="libname"
-            lablText="Library name"
+            lablText="package name"
             type="text"
-            placeholder="entrer library name"
+            placeholder="Package name"
             handleChange={(e) => this.setState({ libname: e.target.value })} />
 
           <Input htmlFor="link"
             lablText="link"
             type="text"
-            placeholder="entrer link : https://github.com/expressjs/express"
+            placeholder="Link : https://github.com/expressjs/express"
             handleChange={(e) => this.setState({ link: e.target.value })} />
 
           <Select htmlFor="categories"
