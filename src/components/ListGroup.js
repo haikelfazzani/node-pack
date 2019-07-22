@@ -1,13 +1,9 @@
 import React from 'react';
+import Altert from './Altert';
+import Badge from './Badge';
 
-function KeyWords({ keywords }) { // "["framework","http","api","web"]"
-console.log(JSON.parse(keywords))
-  let myKeys = JSON.parse(keywords);
-  return (
-    <>
-      {myKeys.map((k, idx) => <span className="badge badge-primary" key={idx}>{k}</span>)}
-    </>
-  )
+function parseDetails(data) {
+  return parseInt(JSON.parse(data.details).popularity * 100, 10);
 }
 
 export default function ListGroup({ data, category, libName }) {
@@ -20,31 +16,43 @@ export default function ListGroup({ data, category, libName }) {
     data = data.filter(d => d.library_name.includes(libName));
   }
 
+  data = data.sort((i,j) => parseDetails(j) - parseDetails(i) )
+
   return (
     <div className="list-group">
       {data.map((l, idx) => {
         return (
-          <a href={JSON.parse(l.links).repository} target="_blank" rel="noopener noreferrer"
-            className="list-group-item list-group-item-action" key={idx}>
+          <div className="list-group-item list-group-item-action" key={idx}>
+
             <div className="d-flex w-100 justify-content-between">
-              <h5 className="mb-1">
-                {l.library_name} <small className="text-muted">v{l.version}</small>
-              </h5>
-              <span className="badge badge-primary">{l.category}</span>
+
+              <a href={JSON.parse(l.links).repository} target="_blank" rel="noopener noreferrer">
+                <h5 className="mb-1">
+                  {l.library_name} <small className="text-muted">v{l.version}</small>
+                </h5>
+              </a>
+
+              <div>
+                <Badge clx="badge badge-dark"
+                  val={"Q:" + parseInt(JSON.parse(l.details).quality * 100, 10)}
+                />
+
+                <Badge clx="badge badge-success ml-2"
+                  val={"P:" + parseInt(JSON.parse(l.details).popularity * 100, 10)}
+                />
+
+                <Badge clx="badge badge-warning ml-2"
+                  val={"M:" + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
+                />
+              </div>
             </div>
+
             <small className="text-muted">{l.description}</small>
-            
-          </a>
+          </div>
         )
       })}
 
-
-      {data.length < 1 &&
-        (<div className="alert alert-primary alert-nfound" role="alert">
-          <h4>Nothing found!</h4>
-          <p>No libraries were found. You can Submit one..</p>
-        </div>)
-      }
+      <Altert dataLength={data.length} />
 
     </div>
   )

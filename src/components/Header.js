@@ -8,8 +8,8 @@ export default function Header(props) {
   return (
     <div className="jumbotron text-center w-100">
       <h1 className="logo"><img src={logo} alt="logo" /></h1>
-      <p className="lead w-75 mx-auto">
-        List of NodeJs libraries, frameworks,modules and packages.
+      <p className="lead w-50 mx-auto">
+        List of NodeJs libraries, frameworks,modules and packages sorted by popularity
       </p>
 
       <div className="w-25 mx-auto">
@@ -18,8 +18,9 @@ export default function Header(props) {
           placeholder="Search.."
           value={searchVal}
           onChange={(e) => {
-            setSearchVal(e.target.value);
-            props.sendData(e.target.value);
+            let val = (e.target.value).toLowerCase();
+            setSearchVal(val);
+            props.sendData(val);
           }}
         />
       </div>

@@ -23,11 +23,7 @@ export class Home extends React.Component {
 
   componentDidMount() {
     axios.get(prodLink)
-      .then(res => {
-
-        this.setState({ libraries: res.data, loading: false });
-        console.log(res.data)
-      });
+      .then(res => this.setState({ libraries: res.data, loading: false }));
   }
 
   getData(val) { this.setState({ libName: val }); }

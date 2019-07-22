@@ -1,5 +1,4 @@
-const categories = [
-  "build-tools",
+const categories = [  
   "database",
   "email",  
   "files",
@@ -8,6 +7,7 @@ const categories = [
   "real-time",
   "templating",
   "testing",
+  "tools",
   "url",
   "util",
   "web-frameworks"
