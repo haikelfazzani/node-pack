@@ -1,8 +1,7 @@
 const categories = [
   "build-tools",
   "database",
-  "email",
-  "web-frameworks",
+  "email",  
   "files",
   "http",
   "orm",
@@ -11,6 +10,7 @@ const categories = [
   "testing",
   "url",
   "util",
+  "web-frameworks"
 ];
 
 export default categories;

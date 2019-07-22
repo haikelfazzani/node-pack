@@ -1,9 +1,23 @@
 import React from 'react';
 
-export default function ListGroup({ data, category }) {
+function KeyWords({ keywords }) { // "["framework","http","api","web"]"
+console.log(JSON.parse(keywords))
+  let myKeys = JSON.parse(keywords);
+  return (
+    <>
+      {myKeys.map((k, idx) => <span className="badge badge-primary" key={idx}>{k}</span>)}
+    </>
+  )
+}
+
+export default function ListGroup({ data, category, libName }) {
 
   if (category && category.length > 0) {
-    data = data.filter(d => d.category === category)
+    data = data.filter(d => d.category === category);
+  }
+
+  if (libName && libName.length > 0) {
+    data = data.filter(d => d.library_name.includes(libName));
   }
 
   return (
@@ -19,6 +33,7 @@ export default function ListGroup({ data, category }) {
               <span className="badge badge-primary">{l.category}</span>
             </div>
             <small className="text-muted">{l.description}</small>
+            
           </a>
         )
       })}

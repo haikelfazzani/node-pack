@@ -15,9 +15,10 @@ export class Home extends React.Component {
     this.state = {
       libraries: [],
       categories: [], category: "",
+      libName: "",
       loading: true,
     };
-
+    this.getData = this.getData.bind(this);
   }
 
   componentDidMount() {
@@ -25,15 +26,17 @@ export class Home extends React.Component {
       .then(res => {
 
         this.setState({ libraries: res.data, loading: false });
-
+        console.log(res.data)
       });
   }
 
+  getData(val) { this.setState({ libName: val }); }
 
   render() {
     return (
       <>
-        <Header />
+        <Header sendData={this.getData} />
+
         <div className="container py-3 mb-5">
           <div className="row">
 
@@ -42,7 +45,7 @@ export class Home extends React.Component {
                 {categories.map((c, idx) =>
                   <li key={idx}
                     onClick={() => this.setState({ category: c })}
-                    className="list-group-item d-flex justify-content-between align-items-center p-0 py-2">
+                    className="list-group-item d-flex justify-content-between align-items-center">
                     {c}
                   </li>
                 )}
@@ -54,7 +57,11 @@ export class Home extends React.Component {
             <div className="col-md-9">
               {this.state.loading ?
                 <Loading /> :
-                <ListGroup data={this.state.libraries} category={this.state.category} />
+                <ListGroup
+                  data={this.state.libraries}
+                  category={this.state.category}
+                  libName={this.state.libName}
+                />
               }
             </div>
 

@@ -44,8 +44,11 @@ export default class AddLibrary extends React.Component {
     return (
       <div className="container py-5 w-50 mx-auto">
 
-        <h3>ADD SOMETHING HELPFUL</h3>
-        <p>All fields are required *</p>
+        <div className="text-center">
+          <h2>ADD SOMETHING HELPFUL</h2>
+          <p>Please make sure the submission is not a fake library, </p>
+          <p>All fields are required *</p>
+        </div>
 
         <form onSubmit={this.handleSubmit} className="mb-3">
 
@@ -56,9 +59,9 @@ export default class AddLibrary extends React.Component {
             handleChange={(e) => this.setState({ libname: e.target.value })} />
 
           <Input htmlFor="link"
-            lablText="Library link"
+            lablText="link"
             type="text"
-            placeholder="entrer library link : https://github.com/expressjs/express"
+            placeholder="entrer link : https://github.com/expressjs/express"
             handleChange={(e) => this.setState({ link: e.target.value })} />
 
           <Select htmlFor="categories"
