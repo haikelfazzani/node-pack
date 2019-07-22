@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'build')));
 
 // routes
-app.use("/api", require("./routes/api"));
+app.use("/api", require("./server/routes/api"));
 
 
 app.get('/', function (req, res) {
