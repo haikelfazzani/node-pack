@@ -9,7 +9,7 @@ export default function Header(props) {
     <div className="jumbotron text-center w-100">
       <h1 className="logo"><img src={logo} alt="logo" /></h1>
       <p className="lead w-50 mx-auto">
-        List of NodeJs libraries, frameworks,modules and packages sorted by popularity
+        List of NPM packages & modules for Node.js Developers
       </p>
 
       <div className="w-25 mx-auto">

@@ -8,15 +8,17 @@ function parseDetails(data) {
 
 export default function ListGroup({ data, category, libName }) {
 
+  let lstPackages = data;
+
   if (category && category.length > 0) {
     data = data.filter(d => d.category === category);
   }
 
   if (libName && libName.length > 0) {
-    data = data.filter(d => d.library_name.includes(libName));
+    data = lstPackages.filter(d => d.library_name.includes(libName));
   }
 
-  data = data.sort((i,j) => parseDetails(j) - parseDetails(i) )
+  data = data.sort((i, j) => parseDetails(j) - parseDetails(i))
 
   return (
     <div className="list-group">
@@ -51,6 +53,7 @@ export default function ListGroup({ data, category, libName }) {
           </div>
         )
       })}
+
 
       <Altert dataLength={data.length} />
 

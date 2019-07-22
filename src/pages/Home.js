@@ -34,6 +34,7 @@ export class Home extends React.Component {
         <Header sendData={this.getData} />
 
         <div className="container py-3 mb-5">
+
           <div className="row">
 
             <div className="col-md-3 mb-3">
@@ -41,16 +42,16 @@ export class Home extends React.Component {
                 {categories.map((c, idx) =>
                   <li key={idx}
                     onClick={() => this.setState({ category: c })}
-                    className="list-group-item d-flex justify-content-between align-items-center">
+                    className="list-group-item d-flex justify-content-between align-items-center pb-0">
                     {c}
                   </li>
                 )}
-
               </ul>
             </div>
 
 
             <div className="col-md-9">
+
               {this.state.loading ?
                 <Loading /> :
                 <ListGroup
@@ -58,7 +59,8 @@ export class Home extends React.Component {
                   category={this.state.category}
                   libName={this.state.libName}
                 />
-              }
+              }              
+
             </div>
 
           </div>

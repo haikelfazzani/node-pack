@@ -46,7 +46,7 @@ export default class AddLibrary extends React.Component {
 
         <div className="text-center">
           <h2>ADD SOMETHING HELPFUL</h2>
-          <p>Please make sure the submission is not a fake library, </p>
+          <p className="text-muted m-0">Please make sure the submission is not a fake library, </p>
           <p>All fields are required *</p>
         </div>
 
@@ -70,7 +70,7 @@ export default class AddLibrary extends React.Component {
             handleChange={(e) => this.setState({ category: e.target.value })}
           />
 
-          <button type="submit" className="btn btn-primary" disabled={this.state.bntDisbale}>
+          <button type="submit" className="btn btn-primary mt-3" disabled={this.state.bntDisbale}>
             Submit
           </button>
 
