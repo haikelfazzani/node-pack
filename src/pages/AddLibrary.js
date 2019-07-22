@@ -6,6 +6,10 @@ import Select from '../components/Select';
 
 import categories from '../data/categories';
 
+
+const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
+const devLink = "http://localhost:3001/api/node/add/library";
+
 export default class AddLibrary extends React.Component {
 
   constructor(props) {
@@ -23,7 +27,7 @@ export default class AddLibrary extends React.Component {
     e.preventDefault();
 
     let { libname, link, category } = this.state;
-    axios.post(`http://localhost:3001/api/node/add/library`, { libname, link, category })
+    axios.post(prodLink, { libname, link, category })
       .then(res => {
 
         this.setState({

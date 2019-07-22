@@ -5,6 +5,9 @@ import Loading from '../components/Loading';
 import ListGroup from '../components/ListGroup';
 import categories from '../data/categories';
 
+const prodLink = "https://node-pack.herokuapp.com/api/node/libraries";
+const devLink = "http://localhost:3001/api/node/api/node/libraries";
+
 export class Home extends React.Component {
 
   constructor(props) {
@@ -18,7 +21,7 @@ export class Home extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/api/node/libraries`)
+    axios.get(prodLink)
       .then(res => {
 
         this.setState({ libraries: res.data, loading: false });
