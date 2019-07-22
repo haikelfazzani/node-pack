@@ -13,7 +13,7 @@ export default function Header(props) {
       </p>
 
       <div className="w-25 mx-auto">
-        <input type="text"
+        <input type="search"
           className="form-control"
           placeholder="Search.."
           value={searchVal}

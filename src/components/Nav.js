@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import logo from '../images/logo-white-svg.svg';
+import githubLogo from '../images/github-logo.png';
 
 export default function Nav() {
 
@@ -30,6 +31,12 @@ export default function Nav() {
 
           <li className="nav-item">
             <Link to="/add-package" className="nav-link">Add Package</Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to="/add-package" className="nav-link">
+              <img src={githubLogo} alt="github logo" height="25" />
+            </Link>
           </li>
 
         </ul>

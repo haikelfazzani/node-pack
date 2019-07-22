@@ -1,24 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import usePrevious from '../hooks/usePrevious';
 import Altert from './Altert';
 import Badge from './Badge';
+import Pagination from './Pagination';
 
 function parseDetails(data) {
   return parseInt(JSON.parse(data.details).popularity * 100, 10);
 }
 
-export default function ListGroup({ data, category, libName }) {
+export default function ListGroup(props) {
 
-  let lstPackages = data;
+  let { data, category, libName } = props;
+
+  const nextInit = 5;
+  const prevInit = 0;
+
+  const [lstPackages, setlstPackages] = useState(data)
+  const [pagination, setPagination] = useState({ next: nextInit, prev: prevInit });
+
+  //const prevAmount = usePrevious({ data, category, libName });
+
+  useEffect(() => {
+    data = data.slice(pagination.prev, pagination.next);
+  }, [pagination]);
+
+  useEffect(() => {
+    setPagination({ next: nextInit, prev: prevInit });
+
+  }, [data, category, libName]);
 
   if (category && category.length > 0) {
-    data = data.filter(d => d.category === category);
+    data = lstPackages.filter(d => d.category === category);
   }
 
   if (libName && libName.length > 0) {
+
     data = lstPackages.filter(d => d.library_name.includes(libName));
   }
 
-  data = data.sort((i, j) => parseDetails(j) - parseDetails(i))
+  data = data.slice(pagination.prev, pagination.next)
+    .sort((i, j) => parseDetails(j) - parseDetails(i))
 
   return (
     <div className="list-group">
@@ -54,6 +75,11 @@ export default function ListGroup({ data, category, libName }) {
         )
       })}
 
+      <Pagination
+        pagination={pagination}
+        setPagination={setPagination}
+        lstPackages={lstPackages}
+      />
 
       <Altert dataLength={data.length} />
 
