@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
-import ListGroup from '../components/ListGroup';
+import ListGroup from '../containers/ListGroup';
 import categories from '../data/categories';
 
 const prodLink = "https://node-pack.herokuapp.com/api/node/libraries";

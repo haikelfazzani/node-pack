@@ -1,8 +1,6 @@
 import React from 'react';
-import usePrevious from '../hooks/usePrevious';
-import Altert from './Altert';
-import Badge from './Badge';
-import Pagination from './Pagination';
+import Altert from '../components/Altert';
+import Badge from '../components/Badge';
 
 import { sortByPopularity, dataSlice, formatDownload } from '../service/ListService';
 

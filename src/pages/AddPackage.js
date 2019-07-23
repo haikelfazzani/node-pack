@@ -17,8 +17,9 @@ export default class AddPackage extends React.Component {
     this.state = {
       libname: "", link: "",
       category: categories[0],
-      bntDisbale: false,
-      serverResp: ""
+      submitted: false, bntDisbale: false,
+      serverResp: "",
+      msg: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,18 +27,20 @@ export default class AddPackage extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    this.setState({ submitted: !this.state.submitted });
+
     let { libname, link, category } = this.state;
-    axios.post(prodLink, { libname, link, category })
-      .then(res => {
 
-        this.setState({
-          libname: "", link: "",
-          category: categories[0],
-          bntDisbale: true,
-          serverResp: res.data
+    if (libname.length > 2 && link.length > 20 && category.length > 3) {
+
+      axios.post(prodLink, { libname, link, category })
+        .then(res => {
+          this.setState({ bntDisbale: true, serverResp: res.data, msg: "Successful submit :) !" });
         });
-      });
-
+    }
+    else {
+      this.setState({ msg: "invalid input, please try again!" })
+    }
   }
 
   render() {
@@ -46,7 +49,9 @@ export default class AddPackage extends React.Component {
 
         <div className="text-center">
           <h2>ADD SOMETHING HELPFUL</h2>
-          <p className="text-muted m-0">Please make sure the submission is not a fake package (or module), </p>
+          <p className="text-muted m-0">
+            Please make sure the submission is not a fake package (or module),
+          </p>
           <p>All fields are required *</p>
         </div>
 
@@ -77,10 +82,8 @@ export default class AddPackage extends React.Component {
         </form>
 
 
-        {this.state.bntDisbale &&
-          (<div className="alert alert-primary" role="alert">
-            {"Successful submit :) !"}
-          </div>)
+        {this.state.submitted &&
+          (<div className="alert alert-dark" role="alert">{this.state.msg}</div>)
         }
 
 
