@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import usePrevious from '../hooks/usePrevious';
 import Altert from './Altert';
 import Badge from './Badge';
@@ -8,81 +8,127 @@ function parseDetails(data) {
   return parseInt(JSON.parse(data.details).popularity * 100, 10);
 }
 
-export default function ListGroup(props) {
+function sortByPopularity(data) {
+  return data.sort((i, j) => parseDetails(j) - parseDetails(i));
+}
 
-  let { data, category, libName } = props;
+function dataSlice(data, begin, end) {
+  return data.slice(begin, end);
+}
 
-  const nextInit = 5;
-  const prevInit = 0;
+const itemsPerPage = 5;
 
-  const [lstPackages, setlstPackages] = useState(data)
-  const [pagination, setPagination] = useState({ next: nextInit, prev: prevInit });
+export default class ListGroup extends React.Component {
 
-  //const prevAmount = usePrevious({ data, category, libName });
-
-  useEffect(() => {
-    data = data.slice(pagination.prev, pagination.next);
-  }, [pagination]);
-
-  useEffect(() => {
-    setPagination({ next: nextInit, prev: prevInit });
-
-  }, [data, category, libName]);
-
-  if (category && category.length > 0) {
-    data = lstPackages.filter(d => d.category === category);
+  constructor(props) {
+    super(props);
+    this.state = {
+      pagination: {
+        totalItems: this.props.data.length, itemsPerPage: 5, begin: 0, end: itemsPerPage
+      },
+      listOfPackages: sortByPopularity(this.props.data),
+      category: this.props.category,
+      libName: this.props.libName,
+    }
   }
 
-  if (libName && libName.length > 0) {
+  componentWillReceiveProps(props) {
 
-    data = lstPackages.filter(d => d.library_name.includes(libName));
+    if (props.category && props.category.length > 0) {
+      this.setState({
+        listOfPackages: this.props.data
+          .filter(d => d.category === props.category)
+      });
+    }
+
+    if (props.libName && props.libName.length > 0) {
+      this.setState({
+        listOfPackages: this.props.data
+          .filter(d => d.library_name.includes(props.libName))
+      });
+    }
+
+    this.setState({
+      pagination: {
+        totalItems: this.state.listOfPackages.length,
+        begin: 0,
+        end: itemsPerPage
+      }
+    });
   }
 
-  data = data.slice(pagination.prev, pagination.next)
-    .sort((i, j) => parseDetails(j) - parseDetails(i))
+  render() {
 
-  return (
-    <div className="list-group">
-      {data.map((l, idx) => {
-        return (
-          <div className="list-group-item list-group-item-action" key={idx}>
+    let { listOfPackages, pagination } = this.state;
+    let { totalItems, begin, end } = pagination;
 
-            <div className="d-flex w-100 justify-content-between">
+    return (
+      <div className="list-group">
+        {dataSlice(listOfPackages, pagination.begin, pagination.end).map((l, idx) => {
+          return (
+            <div className="list-group-item list-group-item-action" key={idx}>
 
-              <a href={JSON.parse(l.links).repository} target="_blank" rel="noopener noreferrer">
-                <h5 className="mb-1">
-                  {l.library_name} <small className="text-muted">v{l.version}</small>
-                </h5>
-              </a>
+              <div className="d-flex w-100 justify-content-between">
 
-              <div>
-                <Badge clx="badge badge-dark"
-                  val={"Q:" + parseInt(JSON.parse(l.details).quality * 100, 10)}
-                />
+                <a href={JSON.parse(l.links).repository} target="_blank" rel="noopener noreferrer">
+                  <h5 className="mb-1">
+                    {l.library_name} <small className="text-muted">v{l.version}</small>
+                  </h5>
+                </a>
 
-                <Badge clx="badge badge-success ml-2"
-                  val={"P:" + parseInt(JSON.parse(l.details).popularity * 100, 10)}
-                />
+                <div>
+                  <Badge clx="badge badge-dark"
+                    val={"Q:" + parseInt(JSON.parse(l.details).quality * 100, 10)}
+                  />
 
-                <Badge clx="badge badge-warning ml-2"
-                  val={"M:" + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
-                />
+                  <Badge clx="badge badge-success ml-2"
+                    val={"P:" + parseInt(JSON.parse(l.details).popularity * 100, 10)}
+                  />
+
+                  <Badge clx="badge badge-warning ml-2"
+                    val={"M:" + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
+                  />
+                </div>
               </div>
+
+              <small className="text-muted">{l.description}</small>
             </div>
+          )
+        })}
 
-            <small className="text-muted">{l.description}</small>
-          </div>
-        )
-      })}
+        <nav aria-label="Page navigation example" className="mt-3"
+          style={{ display: listOfPackages.length < itemsPerPage + 1 ? "none" : "block" }}>
+          <ul className="pagination">
 
-      <Pagination
-        pagination={pagination}
-        setPagination={setPagination}
-        lstPackages={lstPackages}
-      />
+            <li className={begin > 0 ? "page-item" : "page-item disabled"}>
+              <button className="page-link"
+                onClick={() => begin > 0 &&
+                  this.setState({
+                    pagination:
+                      { begin: begin - itemsPerPage, end: end - itemsPerPage }
+                  })
+                }>
+                Previous
+            </button>
+            </li>
 
-      <Altert dataLength={data.length} />
+            <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
+              <button className="page-link"
+                onClick={() => end < listOfPackages.length &&
+                  this.setState({
+                    pagination:
+                      { begin: begin + itemsPerPage, end: end + itemsPerPage }
+                  })
+                }>
+                Next
+            </button>
+            </li>
+          </ul>
+        </nav>
 
-    </div>
-  )
+        <Altert dataLength={listOfPackages.length} />
+
+      </div>
+    )
+  }
 }
