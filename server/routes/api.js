@@ -13,11 +13,14 @@ router.post('/node/add/library', (req, res) => {
       link = link.trim();
       let catg = (category.trim()).toLowerCase();
 
-      axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=20`)
-        .then(response => {
+      axios.all([
+        axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=20`),
+        axios.get("https://api.npmjs.org/downloads/point/last-week/express")
+      ])
+        .then(axios.spread(function (acct, perms) {
 
-          let data = response.data.objects.filter(o => link === o.package.links.repository)[0]
-            || response.data.objects[0];
+          let data = acct.data.objects.filter(o => link === o.package.links.repository)[0]
+            || acct.data.objects[0];
 
           libname = data.package.name || libname;
           let links = JSON.stringify(data.package.links);
@@ -26,11 +29,14 @@ router.post('/node/add/library', (req, res) => {
           let keywords = JSON.stringify(data.package.keywords);
           let version = data.package.version;
 
-          addLibrary(libname, description, links, catg, details, keywords, version, (resolve) => {
-            res.status(200).json(resolve.result);
-          });
+          let downloads = JSON.stringify(perms.data) || 0;
 
-        })
+          addLibrary(libname, description, links, catg, details, keywords, version, downloads,
+            (resolve) => {
+              res.status(200).json(resolve.result);
+            });
+
+        }))
         .catch(error => console.log(error));
 
     } catch (error) {
@@ -52,5 +58,18 @@ router.get('/node/libraries', (req, res) => {
     }
   });
 });
+
+router.get("/node", (req, res) => {
+  axios.all([
+    axios.get(`http://registry.npmjs.com/-/v1/search?text=express&size=20`),
+    axios.get("https://api.npmjs.org/downloads/point/last-week/express")
+  ])
+    .then(axios.spread(function (acct, perms) {
+      console.log(acct.data)
+      //console.log(perms.data)
+    }))
+    .catch(err => console.log(err))
+  res.json("hello")
+})
 
 module.exports = router;

@@ -16,6 +16,18 @@ function dataSlice(data, begin, end) {
   return data.slice(begin, end);
 }
 
+function formatDownload(a) {
+
+  let s = "";
+
+  (a+"").split("").reverse().map((v, i) => {
+    if (i !== 0 && i % 3 === 0) s += " ";
+    s += v
+  })
+
+  return s.split("").reverse().join("");
+}
+
 const itemsPerPage = 5;
 
 export default class ListGroup extends React.Component {
@@ -78,20 +90,25 @@ export default class ListGroup extends React.Component {
 
                 <div>
                   <Badge clx="badge badge-dark"
-                    val={"Q:" + parseInt(JSON.parse(l.details).quality * 100, 10)}
+                    val={"Q: " + parseInt(JSON.parse(l.details).quality * 100, 10)}
                   />
 
                   <Badge clx="badge badge-success ml-2"
-                    val={"P:" + parseInt(JSON.parse(l.details).popularity * 100, 10)}
+                    val={"P: " + parseInt(JSON.parse(l.details).popularity * 100, 10)}
                   />
 
                   <Badge clx="badge badge-warning ml-2"
-                    val={"M:" + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
+                    val={"M: " + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
+                  />
+
+                  <Badge clx="badge badge-light ml-2"
+                    val={"D: " + (l.downloads && formatDownload(JSON.parse(l.downloads).downloads))}
                   />
                 </div>
               </div>
 
               <small className="text-muted">{l.description}</small>
+
             </div>
           )
         })}

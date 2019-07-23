@@ -9,11 +9,14 @@ const libraries = {
   category: "category",
   details: "details",
   keywords: "keywords",
-  version: "version"
+  version: "version",
+  downloads: "downloads"
 };
 
 
-function addLibrary(libName, description, links, category, details, keywords, version, resolve) {
+function addLibrary(
+  libName, description, links, category, details, keywords, version, downloads, resolve
+) {
 
   const sql = `insert into ${libraries.table}(
     ${libraries.libraryName},
@@ -22,10 +25,12 @@ function addLibrary(libName, description, links, category, details, keywords, ve
     ${libraries.category},
     ${libraries.details},
     ${libraries.keywords},
-    ${libraries.version}
+    ${libraries.version},
+    ${libraries.downloads}
   ) 
   VALUES('${libName}', 
-  '${description}', '${links}',  '${category}', '${details}' , '${keywords}' , '${version}' 
+  '${description}', '${links}',  '${category}', '${details}' , '${keywords}' , '${version}' ,
+  '${downloads}'
   )`;
 
   connection.query(sql, function (err, rows) {
