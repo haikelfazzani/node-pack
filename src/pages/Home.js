@@ -45,7 +45,7 @@ export class Home extends React.Component {
 
             <div className="col-md-3 mb-3">
 
-              <Select clx="form-group list-categories"
+              <Select clx="form-group list-categories m-0"
                 options={categories} handleChange={this.handleChange}
               />
 

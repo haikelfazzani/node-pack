@@ -59,7 +59,7 @@ label { color: #a2a2a2; }
 }
 
 #list-packages:hover,
-#list-packages:active { color: #000000 !important; }
+#list-packages:active { color: #343a40 !important; }
 
 .badge { 
   cursor: pointer;

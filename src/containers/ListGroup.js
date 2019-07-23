@@ -25,8 +25,8 @@ export default class ListGroup extends React.Component {
     if (props.category && props.category.length > 0) {
       this.setState({
         listOfPackages: props.category !== "all" ?
-        this.props.data.filter(d => d.category === props.category) :
-        this.props.data
+          this.props.data.filter(d => d.category === props.category) :
+          this.props.data
       });
     }
 
@@ -65,19 +65,19 @@ export default class ListGroup extends React.Component {
                 </a>
 
                 <div>
-                  <Badge clx="badge badge-dark"
+                  <Badge clx="badge badge-dark" toolTip="Quality"
                     val={"Q: " + parseInt(JSON.parse(l.details).quality * 100, 10)}
                   />
 
-                  <Badge clx="badge badge-success ml-2"
+                  <Badge clx="badge badge-success ml-2" toolTip="Popularity"
                     val={"P: " + parseInt(JSON.parse(l.details).popularity * 100, 10)}
                   />
 
-                  <Badge clx="badge badge-warning ml-2"
+                  <Badge clx="badge badge-warning ml-2" toolTip="Maintenance"
                     val={"M: " + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
                   />
 
-                  <Badge clx="badge badge-light ml-2"
+                  <Badge clx="badge badge-primary ml-2" toolTip="Last 7 days number of downloads"
                     val={"D: " + (l.downloads && formatDownload(JSON.parse(l.downloads).downloads))}
                   />
                 </div>
@@ -97,8 +97,7 @@ export default class ListGroup extends React.Component {
               <button className="page-link"
                 onClick={() => begin > 0 &&
                   this.setState({
-                    pagination:
-                      { begin: begin - itemsPerPage, end: end - itemsPerPage }
+                    pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage }
                   })
                 }>
                 Previous
@@ -109,8 +108,7 @@ export default class ListGroup extends React.Component {
               <button className="page-link"
                 onClick={() => end < listOfPackages.length &&
                   this.setState({
-                    pagination:
-                      { begin: begin + itemsPerPage, end: end + itemsPerPage }
+                    pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage }
                   })
                 }>
                 Next
