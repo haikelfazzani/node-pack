@@ -1,4 +1,5 @@
 const categories = [
+  "all",
   "database",
   "email",
   "file-system",

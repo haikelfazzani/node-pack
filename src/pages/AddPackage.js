@@ -71,7 +71,7 @@ export default class AddPackage extends React.Component {
 
           <Select htmlFor="categories"
             lablText="categories"
-            options={categories}
+            options={categories.slice(1)}
             handleChange={(e) => this.setState({ category: e.target.value })}
           />
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import logo from '../images/logo-white-svg.svg';
-import githubLogo from '../images/github-logo.png';
 
 export default function Nav() {
 
-  const [hideNav, setHideNav] = React.useState(false)
+  const [hideNav, setHideNav] = React.useState(false);
+  const githubLink = "https://github.com/haikelfazzani/node-pack";
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark py-3 p-w">
@@ -34,9 +34,9 @@ export default function Nav() {
           </li>
 
           <li className="nav-item">
-            <Link to="/add-package" className="nav-link">
-              <img src={githubLogo} alt="github logo" height="25" />
-            </Link>
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" className="nav-link">
+              github
+            </a>
           </li>
 
         </ul>

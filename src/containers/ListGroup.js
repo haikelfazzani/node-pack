@@ -1,5 +1,5 @@
 import React from 'react';
-import Altert from '../components/Altert';
+import NotFoundAlert from '../components/NotFoundAlert';
 import Badge from '../components/Badge';
 
 import { sortByPopularity, dataSlice, formatDownload } from '../service/ListService';
@@ -24,15 +24,15 @@ export default class ListGroup extends React.Component {
 
     if (props.category && props.category.length > 0) {
       this.setState({
-        listOfPackages: this.props.data
-          .filter(d => d.category === props.category)
+        listOfPackages: props.category !== "all" ?
+        this.props.data.filter(d => d.category === props.category) :
+        this.props.data
       });
     }
 
     if (props.libName && props.libName.length > 0) {
       this.setState({
-        listOfPackages: this.props.data
-          .filter(d => d.library_name.includes(props.libName))
+        listOfPackages: this.props.data.filter(d => d.library_name.includes(props.libName))
       });
     }
 
@@ -102,7 +102,7 @@ export default class ListGroup extends React.Component {
                   })
                 }>
                 Previous
-            </button>
+              </button>
             </li>
 
             <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
@@ -114,12 +114,12 @@ export default class ListGroup extends React.Component {
                   })
                 }>
                 Next
-            </button>
+              </button>
             </li>
           </ul>
         </nav>
 
-        <Altert dataLength={listOfPackages.length} />
+        <NotFoundAlert dataLength={listOfPackages.length} />
 
       </div>
     )

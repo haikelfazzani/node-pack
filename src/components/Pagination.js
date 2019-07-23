@@ -23,6 +23,7 @@ export default function Pagination({ pagination, setPagination, lstPackages }) {
             Next
           </button>
         </li>
+        
       </ul>
     </nav>
   );

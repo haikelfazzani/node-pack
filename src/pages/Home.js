@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import ListGroup from '../containers/ListGroup';
 import categories from '../data/categories';
+import Select from '../components/Select';
 
 const prodLink = "https://node-pack.herokuapp.com/api/node/libraries";
 const devLink = "http://localhost:3001/api/node/api/node/libraries";
@@ -19,11 +20,17 @@ export class Home extends React.Component {
       loading: true,
     };
     this.getData = this.getData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ category: e.target.value });
   }
 
   componentDidMount() {
-    axios.get(prodLink)
-      .then(res => this.setState({ libraries: res.data, loading: false }));
+    axios.get(prodLink).then(res =>
+      this.setState({ libraries: res.data, loading: false })
+    );
   }
 
   getData(val) { this.setState({ libName: val }); }
@@ -34,16 +41,18 @@ export class Home extends React.Component {
         <Header sendData={this.getData} />
 
         <div className="container py-3 mb-5">
-
           <div className="row">
 
             <div className="col-md-3 mb-3">
-              <ul className="list-group lst-left">
+
+              <Select clx="form-group list-categories"
+                options={categories} handleChange={this.handleChange}
+              />
+
+              <ul className="list-group" id="list-categories">
                 {categories.map((c, idx) =>
-                  <li key={idx}
-                    onClick={() => this.setState({ category: c })}
-                    className="list-group-item d-flex justify-content-between align-items-center pb-0">
-                    {c}
+                  <li key={idx} onClick={() => this.setState({ category: c })}
+                    className="list-group-item pb-0" id="list-packages">{c}
                   </li>
                 )}
               </ul>
@@ -59,8 +68,7 @@ export class Home extends React.Component {
                   category={this.state.category}
                   libName={this.state.libName}
                 />
-              }              
-
+              }
             </div>
 
           </div>

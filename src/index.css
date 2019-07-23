@@ -52,15 +52,14 @@ label { color: #a2a2a2; }
 .list-group a h5 { color: #007bff !important; }
 .list-group a h5 small { font-size: 12px; color: #808080; }
 
-.lst-left .list-group-item {    
+#list-packages {    
   color: #007bff;
   border:rgb(65, 65, 65);
   cursor: pointer;
 }
 
-.lst-left .list-group-item:hover,
-.lst-left .list-group-item:focus,
-.lst-left .list-group-item:active { color: #000000; }
+#list-packages:hover,
+#list-packages:active { color: #000000 !important; }
 
 .badge { 
   cursor: pointer;
@@ -87,9 +86,12 @@ label { color: #a2a2a2; }
 }
 .p-w { padding: 10px 130px;}
 
+.list-categories { display: none; }
+
 @media screen and (max-width: 600px) {
   
   .w-25, .w-50, .w-75 { width: 100% !important; }
   .p-w { padding: 10px 20px !important; width: 100% !important; }
-  
+  .list-categories { display: block; }
+  #list-categories { display: none; }
 }
