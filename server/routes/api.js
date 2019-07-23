@@ -15,7 +15,7 @@ router.post('/node/add/library', (req, res) => {
 
       axios.all([
         axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=20`),
-        axios.get("https://api.npmjs.org/downloads/point/last-week/express")
+        axios.get(`https://api.npmjs.org/downloads/point/last-week/${libname}`)
       ])
         .then(axios.spread(function (acct, perms) {
 
