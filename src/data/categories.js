@@ -1,7 +1,8 @@
-const categories = [  
+const categories = [
   "database",
-  "email",  
-  "files",
+  "email",
+  "file-system",
+  "file uploads",
   "http",
   "orm",
   "real-time",
