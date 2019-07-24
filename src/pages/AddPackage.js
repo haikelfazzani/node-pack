@@ -17,20 +17,21 @@ export default class AddPackage extends React.Component {
     super(props);
     this.state = {
       libname: "", link: "",
-      category: categories.slice(1)[0],
+      category: "",
       submitted: false, bntDisbale: false,
       serverResp: "",
       msg: "", errorMsg: "",
       captchatText: "", rndText: ""
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCaptcha = this.handleCaptcha.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleChange(e) { this.setState({ [e.target.name]: e.target.value }); }
+
+  handleSelect(e) { this.setState({ category: e.target.value }); }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -101,7 +102,7 @@ export default class AddPackage extends React.Component {
             lablText="categories"
             options={categories.slice(1)}
             name="categories"
-            handleChange={this.handleChange}
+            handleChange={this.handleSelect}
           />
 
           <CaptchaVerif handleCaptcha={this.handleCaptcha} />
@@ -116,7 +117,9 @@ export default class AddPackage extends React.Component {
 
 
         {this.state.submitted &&
-          (<div className="alert alert-dark" role="alert">{this.state.msg || this.state.errorMsg}</div>)
+          (<div className="alert alert-dark flipInX" role="alert">
+            {this.state.msg || this.state.errorMsg}
+          </div>)
         }
 
 
