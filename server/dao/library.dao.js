@@ -2,36 +2,22 @@ const connection = require("./database");
 const libraries = {
   table: "node_libraries",
   id: "id",
-  libraryName: "library_name",
-  description: "description",
-  links: "links",
-  contributor: "contributor",
-  category: "category",
+  package: "package",
   details: "details",
-  keywords: "keywords",
-  version: "version",
-  downloads: "downloads"
+  downloads: "downloads",
+  category: "category"
 };
 
 
-function addLibrary(
-  libName, description, links, category, details, keywords, version, downloads, resolve
-) {
+function addLibrary(package, details, downloads, category, resolve) {
 
   const sql = `insert into ${libraries.table}(
-    ${libraries.libraryName},
-    ${libraries.description},
-    ${libraries.links},
-    ${libraries.category},
+    ${libraries.package},
     ${libraries.details},
-    ${libraries.keywords},
-    ${libraries.version},
-    ${libraries.downloads}
+    ${libraries.downloads},
+    ${libraries.category}
   ) 
-  VALUES('${libName}', 
-  '${description}', '${links}',  '${category}', '${details}' , '${keywords}' , '${version}' ,
-  '${downloads}'
-  )`;
+  VALUES('${package}', '${details}','${downloads}', '${category}' )`;
 
   connection.query(sql, function (err, rows) {
     resolve({
@@ -47,8 +33,7 @@ function deleteLibrary(resolve) { }
 function getLibrary(libraryName, resolve) {
 
 
-  const sql = `select * from ${libraries.table}
-  where ${libraries.libraryName} = ${libraryName}`;
+  const sql = `select * from ${libraries.table} where ${libraries.libraryName} = ${libraryName}`;
 
   connection.query(sql, function (err, rows) {
     resolve({ err, result: rows[0] });
@@ -60,7 +45,10 @@ function getLibraries(resolve) {
   const sql = `select * from ${libraries.table}`;
 
   connection.query(sql, function (err, rows, fields) {
-    resolve({ err, result: rows });
+    resolve({
+      err: err ? "no data found" : "",
+      result: err ? [] : rows
+    });
   });
 }
 

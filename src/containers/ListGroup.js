@@ -4,7 +4,7 @@ import Badge from '../components/Badge';
 
 import { sortByPopularity, dataSlice, formatDownload } from '../service/ListService';
 
-const itemsPerPage = 10;
+const itemsPerPage = 5;
 
 export default class ListGroup extends React.Component {
 
@@ -58,32 +58,32 @@ export default class ListGroup extends React.Component {
 
               <div className="d-flex w-100 justify-content-between">
 
-                <a href={JSON.parse(l.links).repository} target="_blank" rel="noopener noreferrer">
+                <a href={l.details.package.links.repository} target="_blank" rel="noopener noreferrer">
                   <h5 className="mb-1">
-                    {l.library_name} <small className="text-muted">v{l.version}</small>
+                    {l.package} <small className="text-muted">v{l.details.package.version}</small>
                   </h5>
                 </a>
 
                 <div>
                   <Badge clx="badge badge-dark" toolTip="Quality"
-                    val={"Q: " + parseInt(JSON.parse(l.details).quality * 100, 10)}
+                    val={"Q: " + parseInt(l.details.score.detail.quality * 100, 10)}
                   />
 
                   <Badge clx="badge badge-success ml-2" toolTip="Popularity"
-                    val={"P: " + parseInt(JSON.parse(l.details).popularity * 100, 10)}
+                    val={"P: " + parseInt(l.details.score.detail.popularity * 100, 10)}
                   />
 
                   <Badge clx="badge badge-warning ml-2" toolTip="Maintenance"
-                    val={"M: " + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
+                    val={"M: " + parseInt(l.details.score.detail.maintenance * 100, 10)}
                   />
 
                   <Badge clx="badge badge-primary ml-2" toolTip="Last week number of downloads"
-                    val={"D: " + (l.downloads && formatDownload(JSON.parse(l.downloads).downloads))}
+                    val={"D: " + (l.downloads && formatDownload(l.downloads.downloads))}
                   />
                 </div>
               </div>
 
-              <div><small className="text-muted">{l.description}</small></div>              
+              <div><small className="text-muted">{l.details.package.description}</small></div>
             </div>
           )
         })}

@@ -1,5 +1,5 @@
 function parseDetails(data) {
-  return parseInt(JSON.parse(data.details).popularity * 100, 10);
+  return parseInt(data.details.score.detail.popularity * 100, 10);
 }
 
 function sortByPopularity(data) {

@@ -37,12 +37,12 @@ export default class AddPackage extends React.Component {
       let { libname, link, category } = this.state;
 
       if ((libname.length > 2 && link.length > 20) && category.length > 3) {
-        
+
         axios.post(prodLink, { libname, link, category })
           .then(res => {
-            this.setState({ 
-              bntDisbale: true, 
-              serverResp: res.data, 
+            this.setState({
+              bntDisbale: true,
+              serverResp: res.data,
               msg: res.data.result || res.data.err
             });
           });
@@ -96,9 +96,11 @@ export default class AddPackage extends React.Component {
 
           <CaptchaVerif handleCaptcha={this.handleCaptcha} />
 
-          <button type="submit" className="btn btn-primary mt-3" disabled={this.state.bntDisbale}>
+          <button type="submit" className="btn btn-primary mt-3 mr-3" disabled={this.state.bntDisbale}>
             Submit
           </button>
+
+          <button type="reset" className="btn btn-danger mt-3">RESET</button>
 
         </form>
 

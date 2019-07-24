@@ -14,7 +14,7 @@ export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      libraries: [],
+      packages: [],
       categories: [], category: "",
       libName: "",
       loading: true,
@@ -29,9 +29,9 @@ export class Home extends React.Component {
 
   componentDidMount() {
     axios.get(prodLink).then(res =>
-      this.setState({ libraries: res.data, loading: false })
+      this.setState({ packages: res.data, loading: false })
     )
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
   }
 
   getData(val) { this.setState({ libName: val }); }
@@ -50,10 +50,10 @@ export class Home extends React.Component {
                 options={categories} handleChange={this.handleChange}
               />
 
-              <ul className="list-group" id="list-categories">
+              <ul className="list-group font-s14" id="list-categories">
                 {categories.map((c, idx) =>
                   <li key={idx} onClick={() => this.setState({ category: c })}
-                    className="list-group-item pb-0" id="list-packages">{c}
+                    className="list-group-item pb-1 pt-0" id="list-packages">{c}
                   </li>
                 )}
               </ul>
@@ -65,7 +65,7 @@ export class Home extends React.Component {
               {this.state.loading ?
                 <Loading /> :
                 <ListGroup
-                  data={this.state.libraries}
+                  data={this.state.packages}
                   category={this.state.category}
                   libName={this.state.libName}
                 />
