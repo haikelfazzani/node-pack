@@ -37,12 +37,8 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'build')));
 
 // routes
+app.use("/", require("./server/routes/home.route"));
 app.use("/api", require("./server/routes/api"));
-
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.use("*", (req, res) => res.redirect("/"));
 

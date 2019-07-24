@@ -98,6 +98,16 @@ canvas {
   border-radius: 5px;
 }
 
+.bg-dark-bordred {
+  background-color: #343a40;
+  padding: 10px;
+  margin: 0;
+  border: 2px solid #1d2124;
+  font-size: 16px;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
 @media screen and (max-width: 600px) {
   
   .w-25, .w-50, .w-75 { width: 100% !important; }

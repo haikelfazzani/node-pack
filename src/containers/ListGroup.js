@@ -2,7 +2,9 @@ import React from 'react';
 import NotFoundAlert from '../components/NotFoundAlert';
 import Badge from '../components/Badge';
 
-import { sortByPopularity, dataSlice, formatDownload } from '../service/ListService';
+import { sortByPopularity, dataSlice } from '../service/ListService';
+import ModalPortal from '../components/ModalPortal';
+import Modal from './Modal';
 
 const itemsPerPage = 5;
 
@@ -17,7 +19,12 @@ export default class ListGroup extends React.Component {
       listOfPackages: sortByPopularity(this.props.data),
       category: this.props.category,
       libName: this.props.libName,
+      msg: "",
+      isOpen: false, package: ""
     }
+
+    this.handleModal = this.handleModal.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -45,80 +52,101 @@ export default class ListGroup extends React.Component {
     });
   }
 
+  handleModal(p) {
+    this.setState({ isOpen: true, package: p });
+  }
+
+  handleClose(isOpen) {
+    this.setState({ isOpen: !this.state.isOpen })
+  }
+
   render() {
 
     let { listOfPackages, pagination } = this.state;
     let { totalItems, begin, end } = pagination;
 
     return (
-      <div className="list-group">
-        {dataSlice(listOfPackages, pagination.begin, pagination.end).map((l, idx) => {
-          return (
-            <div className="list-group-item list-group-item-action" key={idx}>
+      <>
+        <ModalPortal>
+          <Modal
+            isOpen={this.state.isOpen}
+            p={this.state.package}
+            handleClose={this.handleClose}
+          />
+        </ModalPortal>
 
-              <div className="d-flex w-100 justify-content-between">
 
-                <a href={l.details.package.links.repository} target="_blank" rel="noopener noreferrer">
-                  <h5 className="mb-1">
-                    {l.package} <small className="text-muted">v{l.details.package.version}</small>
-                  </h5>
-                </a>
+        <div className="list-group">
+          {dataSlice(listOfPackages, pagination.begin, pagination.end).map((l, idx) => {
+            return (
+              <div className="list-group-item list-group-item-action" key={idx}>
+
+                <div className="d-flex w-100 justify-content-between">
+
+                  <a href={l.details.package.links.repository} target="_blank" rel="noopener noreferrer">
+                    <h5 className="mb-1">
+                      {l.package} <small className="text-muted">v{l.details.package.version}</small>
+                    </h5>
+                  </a>
+
+                  <div>
+                    <Badge clx="badge badge-dark" toolTip="Quality"
+                      val={"Q: " + parseInt(l.details.score.detail.quality * 100, 10)}
+                    />
+
+                    <Badge clx="badge badge-success ml-2" toolTip="Popularity"
+                      val={"P: " + parseInt(l.details.score.detail.popularity * 100, 10)}
+                    />
+
+                    <Badge clx="badge badge-warning ml-2" toolTip="Maintenance"
+                      val={"M: " + parseInt(l.details.score.detail.maintenance * 100, 10)}
+                    />
+
+                    <span className="badge badge-primary ml-2" onClick={() => this.handleModal(l)}>
+                      more
+                    </span>
+                  </div>
+                </div>
 
                 <div>
-                  <Badge clx="badge badge-dark" toolTip="Quality"
-                    val={"Q: " + parseInt(l.details.score.detail.quality * 100, 10)}
-                  />
-
-                  <Badge clx="badge badge-success ml-2" toolTip="Popularity"
-                    val={"P: " + parseInt(l.details.score.detail.popularity * 100, 10)}
-                  />
-
-                  <Badge clx="badge badge-warning ml-2" toolTip="Maintenance"
-                    val={"M: " + parseInt(l.details.score.detail.maintenance * 100, 10)}
-                  />
-
-                  <Badge clx="badge badge-primary ml-2" toolTip="Last week number of downloads"
-                    val={"D: " + (l.downloads && formatDownload(l.downloads.downloads))}
-                  />
+                  <small className="text-muted">{l.details.package.description}</small>
                 </div>
               </div>
+            )
+          })}
 
-              <div><small className="text-muted">{l.details.package.description}</small></div>
-            </div>
-          )
-        })}
+          <nav aria-label="Page navigation example" className="mt-3"
+            style={{ display: listOfPackages.length < itemsPerPage + 1 ? "none" : "block" }}>
+            <ul className="pagination">
 
-        <nav aria-label="Page navigation example" className="mt-3"
-          style={{ display: listOfPackages.length < itemsPerPage + 1 ? "none" : "block" }}>
-          <ul className="pagination">
-
-            <li className={begin > 0 ? "page-item" : "page-item disabled"}>
-              <button className="page-link"
-                onClick={() => begin > 0 &&
-                  this.setState({
-                    pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage }
-                  })
-                }>
-                Previous
+              <li className={begin > 0 ? "page-item" : "page-item disabled"}>
+                <button className="page-link"
+                  onClick={() => begin > 0 &&
+                    this.setState({
+                      pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage }
+                    })
+                  }>
+                  Previous
               </button>
-            </li>
+              </li>
 
-            <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
-              <button className="page-link"
-                onClick={() => end < listOfPackages.length &&
-                  this.setState({
-                    pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage }
-                  })
-                }>
-                Next
+              <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
+                <button className="page-link"
+                  onClick={() => end < listOfPackages.length &&
+                    this.setState({
+                      pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage }
+                    })
+                  }>
+                  Next
               </button>
-            </li>
-          </ul>
-        </nav>
+              </li>
+            </ul>
+          </nav>
 
-        <NotFoundAlert dataLength={listOfPackages.length} />
+          <NotFoundAlert dataLength={listOfPackages.length} />
 
-      </div>
+        </div>
+      </>
     )
   }
 }
