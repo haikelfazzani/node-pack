@@ -4,20 +4,18 @@ const libraries = {
   id: "id",
   package: "package",
   details: "details",
-  downloads: "downloads",
   category: "category"
 };
 
 
-function addLibrary(package, details, downloads, category, resolve) {
+function addLibrary(package, details, category, resolve) {
 
   const sql = `insert into ${libraries.table}(
     ${libraries.package},
     ${libraries.details},
-    ${libraries.downloads},
     ${libraries.category}
   ) 
-  VALUES('${package}', '${details}','${downloads}', '${category}' )`;
+  VALUES('${package}', '${details}',''${category}' )`;
 
   connection.query(sql, function (err, rows) {
     resolve({
