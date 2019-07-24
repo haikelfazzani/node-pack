@@ -34,7 +34,10 @@ function addLibrary(
   )`;
 
   connection.query(sql, function (err, rows) {
-    resolve({ err, result: rows });
+    resolve({
+      err: err ? "your package already exist!" : "",
+      result: err ? "" : "Successful submit :) !"
+    });
   });
 
 }

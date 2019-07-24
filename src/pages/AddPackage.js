@@ -5,6 +5,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 
 import categories from '../data/categories';
+import CaptchaVerif from '../components/CaptchaVerif';
 
 
 const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
@@ -19,28 +20,43 @@ export default class AddPackage extends React.Component {
       category: categories[0],
       submitted: false, bntDisbale: false,
       serverResp: "",
-      msg: ""
+      msg: "",
+      captchatText: "", rndText: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCaptcha = this.handleCaptcha.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
+    const { captchatText, rndText } = this.state;
     this.setState({ submitted: !this.state.submitted });
 
-    let { libname, link, category } = this.state;
+    if (captchatText === rndText) {
+      let { libname, link, category } = this.state;
 
-    if (libname.length > 2 && link.length > 20 && category.length > 3) {
+      if (libname.length > 2 && link.length > 20 && category.length > 3) {
 
-      axios.post(prodLink, { libname, link, category })
-        .then(res => {
-          this.setState({ bntDisbale: true, serverResp: res.data, msg: "Successful submit :) !" });
-        });
+        axios.post(prodLink, { libname, link, category })
+          .then(res => {
+            console.log(res.data)
+            this.setState({ bntDisbale: true, serverResp: res.data, msg: "Successful submit :) !" });
+          });
+      }
+      else {
+        this.setState({ msg: "invalid input, please try again!" })
+      }
     }
-    else {
-      this.setState({ msg: "invalid input, please try again!" })
-    }
+    else { this.setState({ msg: "invalid captcha" }) }
+
+  }
+
+  componentDidMount() {
+  }
+
+  handleCaptcha(e, rnd) {
+    this.setState({ captchatText: e.target.value, rndText: rnd })
   }
 
   render() {
@@ -55,7 +71,7 @@ export default class AddPackage extends React.Component {
           <p>All fields are required *</p>
         </div>
 
-        <form onSubmit={this.handleSubmit} className="mb-3">
+        <form onSubmit={this.handleSubmit} className="mb-3" ref="myCanvas">
 
           <Input htmlFor="libname"
             lablText="package name"
@@ -74,6 +90,8 @@ export default class AddPackage extends React.Component {
             options={categories.slice(1)}
             handleChange={(e) => this.setState({ category: e.target.value })}
           />
+
+          <CaptchaVerif handleCaptcha={this.handleCaptcha} />
 
           <button type="submit" className="btn btn-primary mt-3" disabled={this.state.bntDisbale}>
             Submit

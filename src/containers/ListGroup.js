@@ -4,7 +4,7 @@ import Badge from '../components/Badge';
 
 import { sortByPopularity, dataSlice, formatDownload } from '../service/ListService';
 
-const itemsPerPage = 5;
+const itemsPerPage = 10;
 
 export default class ListGroup extends React.Component {
 

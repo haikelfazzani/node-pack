@@ -87,7 +87,13 @@ label { color: #a2a2a2; }
 .p-w { padding: 10px 130px;}
 
 .list-categories { display: none; }
-#list-categories { max-height: 600px; overflow: auto; }
+#list-categories { max-height: 800px; overflow: auto; }
+
+canvas {
+  background-color: white;
+  padding: 8px 0px 0px;
+  border-radius: 5px;
+}
 
 @media screen and (max-width: 600px) {
   
