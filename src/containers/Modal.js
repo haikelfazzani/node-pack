@@ -13,8 +13,7 @@ export default class Modal extends React.Component {
     this.setState({ packageDetails: props.p });
 
     if (props.p.package && props.p.package.length > 0) {
-      axios.
-        get(`https://api.npmjs.org/downloads/point/last-week/${props.p.package}`)
+      axios.get(`https://api.npmjs.org/downloads/point/last-week/${props.p.package}`)
         .then((res) => {
           const data = res.data;
           this.setState({ downloads: data, loading: false });

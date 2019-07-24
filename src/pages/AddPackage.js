@@ -17,45 +17,52 @@ export default class AddPackage extends React.Component {
     super(props);
     this.state = {
       libname: "", link: "",
-      category: categories[0],
+      category: categories.slice(1)[0],
       submitted: false, bntDisbale: false,
       serverResp: "",
-      msg: "",
+      msg: "", errorMsg: "",
       captchatText: "", rndText: ""
     };
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCaptcha = this.handleCaptcha.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
     const { captchatText, rndText } = this.state;
-    this.setState({ submitted: !this.state.submitted });
+    this.setState({ submitted: true });
 
     if (captchatText === rndText) {
       let { libname, link, category } = this.state;
 
-      if ((libname.length > 2 && link.length > 20) && category.length > 3) {
+      if (libname.length > 2 && link.length > 20) {
+
+        this.setState({ bntDisbale: true });
 
         axios.post(prodLink, { libname, link, category })
           .then(res => {
             this.setState({
-              bntDisbale: true,
               serverResp: res.data,
-              msg: res.data.result || res.data.err
+              msg: res.data.result,
+              errorMsg: res.data.err
             });
-          });
+          })
+          .catch(err => err);
       }
       else {
-        this.setState({ msg: "invalid input, please try again!" })
+        this.setState({ errorMsg: "invalid input, please try again!" })
       }
     }
-    else { this.setState({ msg: "invalid captcha" }) }
+    else {
+      this.setState({ errorMsg: "invalid captcha" })
+    }
 
-  }
-
-  componentDidMount() {
   }
 
   handleCaptcha(e, rnd) {
@@ -79,19 +86,22 @@ export default class AddPackage extends React.Component {
           <Input htmlFor="libname"
             lablText="package name"
             type="text"
-            placeholder="Package name"
-            handleChange={(e) => this.setState({ libname: e.target.value })} />
+            name="libname"
+            handleChange={this.handleChange}
+            placeholder="Package name" />
 
           <Input htmlFor="link"
             lablText="link"
             type="text"
-            placeholder="Link : https://github.com/expressjs/express"
-            handleChange={(e) => this.setState({ link: e.target.value })} />
+            name="link"
+            handleChange={this.handleChange}
+            placeholder="Link : https://github.com/expressjs/express" />
 
           <Select htmlFor="categories"
             lablText="categories"
             options={categories.slice(1)}
-            handleChange={(e) => this.setState({ category: e.target.value })}
+            name="categories"
+            handleChange={this.handleChange}
           />
 
           <CaptchaVerif handleCaptcha={this.handleCaptcha} />
@@ -106,7 +116,7 @@ export default class AddPackage extends React.Component {
 
 
         {this.state.submitted &&
-          (<div className="alert alert-dark" role="alert">{this.state.msg}</div>)
+          (<div className="alert alert-dark" role="alert">{this.state.msg || this.state.errorMsg}</div>)
         }
 
 
