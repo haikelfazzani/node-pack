@@ -36,7 +36,7 @@ export default class AddPackage extends React.Component {
     if (captchatText === rndText) {
       let { libname, link, category } = this.state;
 
-      if (libname.length > 2 && link.length > 20 && category.length > 3) {
+      if ((libname.length > 2 && link.length > 20) && category.length > 3) {
 
         axios.post(prodLink, { libname, link, category })
           .then(res => {

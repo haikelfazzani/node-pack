@@ -33,7 +33,7 @@ router.post('/node/add/library', (req, res) => {
 
           addLibrary(libname, description, links, catg, details, keywords, version, downloads,
             (resolve) => {
-              res.status(200).json(resolve.result);
+              res.status(200).json(resolve);
             });
 
         }))
