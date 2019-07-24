@@ -5,7 +5,7 @@ import Input from '../components/Input';
 import Select from '../components/Select';
 
 import categories from '../data/categories';
-import CaptchaVerif from '../components/CaptchaVerif';
+import CaptchaVerif from '../containers/CaptchaVerif';
 
 
 const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
@@ -37,11 +37,14 @@ export default class AddPackage extends React.Component {
       let { libname, link, category } = this.state;
 
       if ((libname.length > 2 && link.length > 20) && category.length > 3) {
-
+        
         axios.post(prodLink, { libname, link, category })
           .then(res => {
-            console.log(res.data)
-            this.setState({ bntDisbale: true, serverResp: res.data, msg: "Successful submit :) !" });
+            this.setState({ 
+              bntDisbale: true, 
+              serverResp: res.data, 
+              msg: res.data.result || res.data.err
+            });
           });
       }
       else {

@@ -4,7 +4,23 @@ const path = require('path');
 const app = express();
 const cors = require("cors");
 
-app.use(cors("*"));
+const whitelist = [
+  "http://localhost:3001",
+  "http://localhost:3002",
+  "https://node-pack.herokuapp.com"
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
 app.disable('x-powered-by');
 
 require('dotenv').config();

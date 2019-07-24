@@ -7,7 +7,7 @@ import categories from '../data/categories';
 import Select from '../components/Select';
 
 const prodLink = "https://node-pack.herokuapp.com/api/node/libraries";
-const devLink = "http://localhost:3001/api/node/api/node/libraries";
+const devLink = "http://localhost:3001/api/node/libraries";
 
 export class Home extends React.Component {
 
@@ -30,7 +30,8 @@ export class Home extends React.Component {
   componentDidMount() {
     axios.get(prodLink).then(res =>
       this.setState({ libraries: res.data, loading: false })
-    );
+    )
+    .catch(err => console.log(err));
   }
 
   getData(val) { this.setState({ libName: val }); }

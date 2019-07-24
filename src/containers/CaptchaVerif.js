@@ -1,21 +1,13 @@
 import React from 'react';
 import { Captcha } from '@haikel/min-captcha';
-import Input from './Input';
+import Input from '../components/Input';
 
 const captcha = new Captcha();
 let rnd = captcha.getRndString({ nbChar: 4 });
 
-const canvas = captcha.setupCanvas(
-  {
-    randString: rnd,
-    sizeAndFont: "30px monospace"
-  });
+const canvas = captcha.setupCanvas({ randString: rnd, sizeAndFont: "30px monospace" });
 
 export default class CaptchaVerif extends React.Component {
-
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount() {
     this.refs.captcha.appendChild(canvas);
