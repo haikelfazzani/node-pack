@@ -77,14 +77,13 @@ export default class ListGroup extends React.Component {
                     val={"M: " + parseInt(JSON.parse(l.details).maintenance * 100, 10)}
                   />
 
-                  <Badge clx="badge badge-primary ml-2" toolTip="Last 7 days number of downloads"
+                  <Badge clx="badge badge-primary ml-2" toolTip="Last week number of downloads"
                     val={"D: " + (l.downloads && formatDownload(JSON.parse(l.downloads).downloads))}
                   />
                 </div>
               </div>
 
-              <small className="text-muted">{l.description}</small>
-
+              <div><small className="text-muted">{l.description}</small></div>              
             </div>
           )
         })}

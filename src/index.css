@@ -87,6 +87,7 @@ label { color: #a2a2a2; }
 .p-w { padding: 10px 130px;}
 
 .list-categories { display: none; }
+#list-categories { max-height: 600px; overflow: auto; }
 
 @media screen and (max-width: 600px) {
   
