@@ -11,15 +11,13 @@ const libraries = {
 function addLibrary(package, details, category, resolve) {
 
   const sql = `insert into ${libraries.table}(
-    ${libraries.package},
-    ${libraries.details},
-    ${libraries.category}
+    ${libraries.package}, ${libraries.details}, ${libraries.category}
   ) 
-  VALUES('${package}', '${details}',''${category}' )`;
+  VALUES( '${package}' , '${details}' ,  '${category}' )`;
 
   connection.query(sql, function (err, rows) {
     resolve({
-      err: err ? "your package already exist!" : "",
+      err: err ? `${package} already exit!` : "",
       result: err ? "" : "Successful submit :) !"
     });
   });
