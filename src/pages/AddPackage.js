@@ -11,6 +11,18 @@ import CaptchaVerif from '../containers/CaptchaVerif';
 const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
 const devLink = "http://localhost:3001/api/node/add/library";
 
+function AddPackageHeader() {
+  return (
+    <div className="text-center">
+      <h2>ADD SOMETHING HELPFUL</h2>
+      <p className="text-muted m-0">
+        Please make sure the submission is not a fake package (or module),
+          </p>
+      <p>All fields are required *</p>
+    </div>
+  )
+}
+
 export default class AddPackage extends React.Component {
 
   constructor(props) {
@@ -51,7 +63,8 @@ export default class AddPackage extends React.Component {
             this.setState({
               serverResp: res.data,
               msg: res.data.result,
-              errorMsg: res.data.err
+              errorMsg: res.data.err,
+              libname: "", link: "", captchatText: ""
             });
           })
           .catch(err => err);
@@ -74,13 +87,7 @@ export default class AddPackage extends React.Component {
     return (
       <div className="container py-5 w-50 mx-auto">
 
-        <div className="text-center">
-          <h2>ADD SOMETHING HELPFUL</h2>
-          <p className="text-muted m-0">
-            Please make sure the submission is not a fake package (or module),
-          </p>
-          <p>All fields are required *</p>
-        </div>
+        <AddPackageHeader />
 
         <form onSubmit={this.handleSubmit} className="mb-3" ref="myCanvas">
 
@@ -88,6 +95,7 @@ export default class AddPackage extends React.Component {
             lablText="package name"
             type="text"
             name="libname"
+            value={this.state.libname}
             handleChange={this.handleChange}
             placeholder="Package name" />
 
@@ -95,6 +103,7 @@ export default class AddPackage extends React.Component {
             lablText="link"
             type="text"
             name="link"
+            value={this.state.link}
             handleChange={this.handleChange}
             placeholder="Link : https://github.com/expressjs/express" />
 
@@ -105,7 +114,10 @@ export default class AddPackage extends React.Component {
             handleChange={this.handleSelect}
           />
 
-          <CaptchaVerif handleCaptcha={this.handleCaptcha} />
+          <CaptchaVerif
+            value={this.state.captchatText}
+            handleCaptcha={this.handleCaptcha}
+          />
 
           <button type="submit" className="btn btn-primary mt-3 mr-3" disabled={this.state.bntDisbale}>
             Submit
@@ -116,7 +128,7 @@ export default class AddPackage extends React.Component {
         </form>
 
 
-        {this.state.submitted &&
+        {(this.state.msg.length > 0 || this.state.errorMsg.length < 0) &&
           (<div className="alert alert-dark flipInX" role="alert">
             {this.state.msg || this.state.errorMsg}
           </div>)

@@ -6,7 +6,7 @@ import { sortByPopularity, dataSlice } from '../service/ListService';
 import ModalPortal from '../components/ModalPortal';
 import Modal from './Modal';
 
-const itemsPerPage = 5;
+const itemsPerPage = 8;
 
 export default class ListGroup extends React.Component {
 

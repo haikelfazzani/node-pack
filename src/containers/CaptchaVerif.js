@@ -21,6 +21,7 @@ export default class CaptchaVerif extends React.Component {
           <Input
             type="text"
             placeholder="Enter captcha text"
+            value={this.props.value}
             handleChange={(e) => this.props.handleCaptcha(e, rnd)} />
         </div>
       </div>
