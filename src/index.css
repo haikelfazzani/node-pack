@@ -85,6 +85,7 @@ label { color: #a2a2a2; }
   text-decoration: none !important;
 }
 
+.font-s12 { font-size: 12px !important; }
 .font-s14 { font-size: 14px !important; }
 
 .p-w { padding: 10px 130px;}

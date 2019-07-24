@@ -35,7 +35,7 @@ export default class Modal extends React.Component {
               (<>
                 <div className="modal-header">
                   <h5 className="modal-title text-uppercase">
-                    {packageDetails.package} <small>v{packageDetails.details.package.version}</small>
+                    {packageDetails.package}
                   </h5>
                   <button type="button" className="close"
                     onClick={() => this.props.handleClose()}>
@@ -45,13 +45,23 @@ export default class Modal extends React.Component {
 
                 <div className="modal-body">
                   <p className="text-muted">{packageDetails.details.package.description}</p>
-                  <div>
-                    <h5 className="bg-dark-bordred text-uppercase">
-                      weekly downloads : {formatDownload(downloads.downloads)}
-                    </h5>
-                  </div>
-                  <div>
 
+                  <ul className="list-group">
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      latest version
+                      <span className="badge badge-primary">{packageDetails.details.package.version}</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      weekly downloads
+                      <span className="badge badge-primary">{formatDownload(downloads.downloads)}</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between align-items-center">
+                      Category
+                      <span className="badge badge-primary">{packageDetails.category}</span>
+                    </li>
+                  </ul>
+
+                  <div>
                     <ExternalLink
                       clx="btn btn-outline-primary btn-sm mt-3"
                       link={packageDetails.details.package.links.homepage}
@@ -63,7 +73,6 @@ export default class Modal extends React.Component {
                       link={packageDetails.details.package.links.repository}
                       text="repository"
                     />
-
                   </div>
 
                 </div>
