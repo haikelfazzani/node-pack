@@ -7,7 +7,6 @@ import Select from '../components/Select';
 import categories from '../data/categories';
 import CaptchaVerif from '../containers/CaptchaVerif';
 
-
 const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
 const devLink = "http://localhost:3001/api/node/add/library";
 
@@ -126,7 +125,6 @@ export default class AddPackage extends React.Component {
           <button type="reset" className="btn btn-danger mt-3">RESET</button>
 
         </form>
-
 
         {(this.state.msg.length > 0 || this.state.errorMsg.length < 0) &&
           (<div className="alert alert-dark flipInX" role="alert">

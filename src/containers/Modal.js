@@ -49,15 +49,15 @@ export default class Modal extends React.Component {
                   <ul className="list-group">
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                       latest version
-                      <span className="badge badge-primary">{packageDetails.details.package.version}</span>
+                      <span className="badge badge-primary font-s14">{packageDetails.details.package.version}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                       weekly downloads
-                      <span className="badge badge-primary">{formatDownload(downloads.downloads)}</span>
+                      <span className="badge badge-primary font-s14">{formatDownload(downloads.downloads)}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center">
                       Category
-                      <span className="badge badge-primary">{packageDetails.category}</span>
+                      <span className="badge badge-primary font-s14">{packageDetails.category}</span>
                     </li>
                   </ul>
 
