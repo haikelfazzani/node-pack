@@ -112,11 +112,15 @@ canvas {
 
 
 footer {
-  background-color: #bec5cc;
-  margin: 0;
-  padding: 10px;
+  height: 60px;
+  border-top: 1px #e5e4ec solid;
   text-align: center;
-  position: relative;
+}
+
+footer p {
+  line-height: 60px;
+  margin: 0;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 600px) {
