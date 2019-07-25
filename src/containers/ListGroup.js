@@ -39,7 +39,7 @@ export default class ListGroup extends React.Component {
 
     if (props.libName && props.libName.length > 0) {
       this.setState({
-        listOfPackages: this.props.data.filter(d => d.library_name.includes(props.libName))
+        listOfPackages: this.props.data.filter(d => d.package.includes(props.libName))
       });
     }
 
