@@ -65,7 +65,7 @@ export default class Modal extends React.Component {
 
                   <ul className="list-group">
                     <LiBadge
-                      text="latest version"
+                      text="lastest version"
                       badgeText={details.collected.metadata.version}
                     />
 

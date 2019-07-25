@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../images/logo-svg.svg';
 import ExternalLink from './ExternalLink';
 
 export default function Footer() {

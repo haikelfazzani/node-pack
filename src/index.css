@@ -132,3 +132,10 @@ footer p {
   #list-categories { display: none; }
   .display-5 { font-size: 22px; }
 }
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 400px;
+    margin: 1.75rem auto;
+  }
+}
