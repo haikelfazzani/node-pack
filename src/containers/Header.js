@@ -7,7 +7,7 @@ export default function Header(props) {
   return (
     <div className="jumbotron text-center w-100">
       <p className="lead text-uppercase display-5 w-50 mx-auto">
-        Collections of NPM packages & modules for Node.js Developers
+        A collections of NPM packages & modules for Node.js Developers
       </p>
 
       <div className="w-25 mx-auto">

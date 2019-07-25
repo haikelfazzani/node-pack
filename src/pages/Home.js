@@ -8,7 +8,7 @@ export default function Home() {
       <Helmet>
         <meta charSet="utf-8" />
         <title>NodePack - list of npm packages</title>
-        <meta name="description" content="list of npm packages and modules for nodejs developers" />
+        <meta name="description" content="a collections of npm packages and modules for Nodejs Developerss" />
       </Helmet>
       <LoadPackages />
     </>
