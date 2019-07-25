@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from '../images/logo-w-svg.svg';
 
 export default function Header(props) {
 
@@ -7,9 +6,8 @@ export default function Header(props) {
 
   return (
     <div className="jumbotron text-center w-100">
-      <h1 className="logo"><img src={logo} alt="logo" /></h1>
-      <p className="lead w-50 mx-auto">
-        List of NPM packages & modules for Node.js Developers
+      <p className="lead text-uppercase display-5 w-50 mx-auto">
+        Collections of NPM packages & modules for Node.js Developers
       </p>
 
       <div className="w-25 mx-auto">

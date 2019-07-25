@@ -17,6 +17,7 @@
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
+  background-color: #f3f3f3 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -28,7 +29,7 @@ a { text-decoration: none !important; }
 
 
 form {
-  background-color: #343a40;
+  background-color: #ffffff !important;
   padding: 30px;
   border-radius: 5px;
 }
@@ -87,6 +88,7 @@ label { color: #a2a2a2; }
 
 .font-s12 { font-size: 12px !important; }
 .font-s14 { font-size: 14px !important; }
+.display-5 { font-size: 30px; }
 
 .p-w { padding: 10px 130px;}
 
@@ -112,13 +114,12 @@ canvas {
 
 
 footer {
-  height: 60px;
+  height: 100px;
   border-top: 1px #e5e4ec solid;
-  text-align: center;
 }
 
 footer p {
-  line-height: 60px;
+  line-height: 100px;
   margin: 0;
   white-space: nowrap;
 }
@@ -129,4 +130,5 @@ footer p {
   .p-w { padding: 10px 20px !important; width: 100% !important; }
   .list-categories { display: block; }
   #list-categories { display: none; }
+  .display-5 { font-size: 22px; }
 }

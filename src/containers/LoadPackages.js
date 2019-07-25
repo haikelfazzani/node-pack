@@ -52,7 +52,8 @@ export default class LoadPackages extends React.Component {
                 options={categories} handleChange={this.handleChange}
               />
 
-              <ul className="list-group font-s14" id="list-categories">
+              <ul className="list-group font-s14" id="list-categories" style={{ padding: "15px 5px",
+    backgroundColor: "#fff"}}>
                 {categories.map((c, idx) =>
                   <li key={idx} onClick={() => this.setState({ category: c })}
                     className="list-group-item pb-1 pt-0" id="list-packages">{c}
