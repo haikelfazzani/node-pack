@@ -3,30 +3,35 @@ import axios from 'axios';
 import Loading from '../components/Loading';
 import { formatDownload } from '../service/ListService';
 import ExternalLink from '../components/ExternalLink';
-
+import LiBadge from '../components/LiBadge';
 
 export default class Modal extends React.Component {
 
-  state = { packageDetails: this.props.p, downloads: {}, loading: true }
+  state = { packageDetails: this.props.p, details: {}, downloads: {}, loading: true }
 
   componentWillReceiveProps(props) {
     this.setState({ packageDetails: props.p });
 
     if (props.p.package && props.p.package.length > 0) {
-      axios.get(`https://api.npmjs.org/downloads/point/last-week/${props.p.package}`)
-        .then((res) => {
-          const data = res.data;
-          this.setState({ downloads: data, loading: false });
-        })
-        .catch(error => console.log(error));
+
+      axios.all([
+        axios.get(`https://api.npms.io/v2/package/${props.p.package}`),
+        axios.get(`https://api.npmjs.org/downloads/point/last-week/${props.p.package}`)
+      ])
+        .then(axios.spread((acct, perms) => {
+          this.setState({
+            details: acct.data, downloads: perms.data, loading: false
+          });
+        }));
     }
   }
 
   render() {
-    let { packageDetails, downloads, loading } = this.state;
+    let { packageDetails, details, downloads, loading } = this.state;
 
     return (
-      <div className="modal" style={{ display: this.props.isOpen ? "block" : "none", backgroundColor: "#0000009c" }}>
+      <div className="modal"
+        style={{ display: this.props.isOpen ? "block" : "none", backgroundColor: "#0000009c" }}>
 
         <div className="modal-dialog" role="document">
           <div className="modal-content">
@@ -44,33 +49,51 @@ export default class Modal extends React.Component {
                 </div>
 
                 <div className="modal-body">
-                  <p className="text-muted">{packageDetails.details.package.description}</p>
+                  <p className="text-muted">{details.collected.metadata.description}</p>
 
                   <ul className="list-group">
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                      latest version
-                      <span className="badge badge-primary font-s14">{packageDetails.details.package.version}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                      weekly downloads
-                      <span className="badge badge-primary font-s14">{formatDownload(downloads.downloads)}</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                      Category
-                      <span className="badge badge-primary font-s14">{packageDetails.category}</span>
-                    </li>
+                    <LiBadge
+                      text="latest version"
+                      badgeText={details.collected.metadata.version}
+                    />
+
+                    <LiBadge
+                      text="weekly downloads"
+                      badgeText={formatDownload(downloads.downloads)}
+                    />
+
+                    <LiBadge
+                      text="stars"
+                      badgeText={formatDownload(details.collected.github.starsCount)}
+                    />
+
+                    <LiBadge
+                      text="forks"
+                      badgeText={formatDownload(details.collected.github.forksCount)}
+                    />
+
+                    <LiBadge
+                      text="issues"
+                      badgeText={formatDownload(details.collected.github.issues.count)}
+                    />
                   </ul>
 
                   <div>
                     <ExternalLink
                       clx="btn btn-outline-primary btn-sm mt-3"
-                      link={packageDetails.details.package.links.homepage}
+                      link={details.collected.metadata.links.npm}
+                      text="npm"
+                    />
+
+                    <ExternalLink
+                      clx="btn btn-outline-primary btn-sm mt-3 ml-2"
+                      link={details.collected.metadata.links.homepage}
                       text="WEBSITE"
                     />
 
                     <ExternalLink
                       clx="btn btn-outline-primary btn-sm mt-3 ml-2"
-                      link={packageDetails.details.package.links.repository}
+                      link={details.collected.metadata.links.repository}
                       text="repository"
                     />
                   </div>

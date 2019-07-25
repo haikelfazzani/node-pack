@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -107,6 +107,16 @@ canvas {
   font-size: 16px;
   color: #ffffff;
   border-radius: 5px;
+}
+
+
+
+footer {
+  background-color: #bec5cc;
+  margin: 0;
+  padding: 10px;
+  text-align: center;
+  position: relative;
 }
 
 @media screen and (max-width: 600px) {

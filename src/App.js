@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from './pages/Home';
 import AddPackage from './pages/AddPackage';
 import Nav from './components/Nav';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/add-package" component={AddPackage} />
       </div>
+
+      <Footer />
     </Router>
   );
 }
