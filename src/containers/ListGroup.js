@@ -90,12 +90,12 @@ export default class ListGroup extends React.Component {
                   </a>
 
                   <div>
-                    <Badge clx="badge badge-dark" toolTip="Quality"
-                      val={"Q: " + parseInt(l.details.score.detail.quality * 100, 10)}
+                    <Badge clx="badge badge-success" toolTip="Popularity"
+                      val={"P: " + parseInt(l.details.score.detail.popularity * 100, 10)}
                     />
 
-                    <Badge clx="badge badge-success ml-2" toolTip="Popularity"
-                      val={"P: " + parseInt(l.details.score.detail.popularity * 100, 10)}
+                    <Badge clx="badge badge-dark ml-2" toolTip="Quality"
+                      val={"Q: " + parseInt(l.details.score.detail.quality * 100, 10)}
                     />
 
                     <Badge clx="badge badge-warning ml-2" toolTip="Maintenance"
