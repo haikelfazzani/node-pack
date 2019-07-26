@@ -9,6 +9,7 @@ const categories = [
   "fileuploads & images",
   "http & real-time",
   "miscellaneous",
+  "process-management",
   "security & testing",
   "serialization",
   "streams",
