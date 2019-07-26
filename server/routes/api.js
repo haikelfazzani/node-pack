@@ -9,9 +9,9 @@ router.post('/node/add/library', (req, res) => {
 
       let { libname, link, category } = req.body;
 
-      const package = (libname.trim()).toLowerCase();
-      link = link.trim();
-      const catg = (category.trim()).toLowerCase();
+      const package = (req.sanitize(libname).trim()).toLowerCase();
+      link = req.sanitize(link).trim();
+      const catg = (req.sanitize(category).trim()).toLowerCase();
 
       axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=10`)
         .then(acct => {

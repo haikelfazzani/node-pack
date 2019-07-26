@@ -6,13 +6,12 @@ import ExternalLink from '../components/ExternalLink';
 import LiBadge from '../components/LiBadge';
 
 function PackageBadges({ badges }) {
-  return (
-    <>
-      {badges.map((b, indx) => {
+  return (<>
+    {badges && badges.length > 0 &&
+      badges.map((b, indx) => {
         return (<img key={indx} src={b.urls.original || b.urls.shields} alt=".." className="mr-2" />)
       })}
-    </>
-  )
+  </>)
 }
 
 export default class Modal extends React.Component {

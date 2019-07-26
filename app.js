@@ -1,7 +1,9 @@
 const express = require('express');
+const app = express();
+
 const bodyParser = require('body-parser');
 const path = require('path');
-const app = express();
+const expressSanitizer = require('express-sanitizer');
 const cors = require("cors");
 
 const whitelist = [
@@ -27,11 +29,11 @@ app.disable('x-powered-by');
 require('dotenv').config();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
  
 // parse application/json
-app.use(bodyParser.json())
-
+app.use(bodyParser.json());
+app.use(expressSanitizer());
 
 // server static files
 app.use(express.static(path.join(__dirname, 'build')));
