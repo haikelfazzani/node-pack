@@ -37,6 +37,12 @@ form {
 canvas, .form-control {
   background-color: #343a40 !important;
   color: #ffffff !important;
+  transition: all .3s ease;
+}
+
+.form-control:focus {
+  background-color: #ffffff !important;
+  color: #343a40 !important;
 }
 
 code {
@@ -136,6 +142,10 @@ footer p {
   .list-categories { display: block; }
   #list-categories { display: none; }
   .display-5 { font-size: 22px; }
+
+  footer p {
+    line-height: 20px;
+  }
 }
 
 @media (min-width: 576px) {

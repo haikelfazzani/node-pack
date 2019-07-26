@@ -13,21 +13,17 @@ router.post('/node/add/library', (req, res) => {
       const packageLink = req.sanitize(link).trim();
       const catg = (req.sanitize(category).trim()).toLowerCase();
 
-      console.log(package)
-
       axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=10`)
         .then(acct => {
 
           let details = acct.data.objects
-            .filter(o => packageLink === o.package.links.repository)[0] || acct.data.objects[0];            
+            .filter(o => packageLink === o.package.links.repository)[0] || acct.data.objects[0];
 
           addLibrary(package,
             encodeURIComponent(packageLink),
             JSON.stringify(details),
             encodeURIComponent(catg),
             (resolve) => {
-              console.log(resolve)
-
               res.status(200).json(resolve);
             });
 

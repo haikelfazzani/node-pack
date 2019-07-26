@@ -5,7 +5,6 @@ import logo from '../images/logo-white-svg.svg';
 export default function Nav() {
 
   const [hideNav, setHideNav] = React.useState(false);
-  const githubLink = "https://github.com/haikelfazzani/node-pack/issues";
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark py-3 p-w">
@@ -31,12 +30,6 @@ export default function Nav() {
 
           <li className="nav-item">
             <Link to="/add-package" className="nav-link">Add Package</Link>
-          </li>
-
-          <li className="nav-item">
-            <a href={githubLink} target="_blank" rel="noopener noreferrer" className="nav-link">
-              issues
-            </a>
           </li>
 
         </ul>
