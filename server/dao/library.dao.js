@@ -3,21 +3,22 @@ const libraries = {
   table: "node_libraries",
   id: "id",
   package: "package",
+  link: "link",
   details: "details",
   category: "category"
 };
 
 
-function addLibrary(package, details, category, resolve) {
+function addLibrary(package, link, details, category, resolve) {
 
   const sql = `insert into ${libraries.table}(
-    ${libraries.package}, ${libraries.details}, ${libraries.category}
+    ${libraries.package}, ${libraries.link}, ${libraries.details}, ${libraries.category}
   ) 
-  VALUES( '${package}' , '${details}' ,  '${category}' )`;
+  VALUES( '${package}' , '${link}' ,'${details}' ,  '${category}' )`;
 
   connection.query(sql, function (err, rows) {
     resolve({
-      err: err ? `${package} already exit!` : "",
+      err: err ? `Sorry, the ${package} already exits!` : "",
       result: err ? "" : "Successful submit :) !"
     });
   });

@@ -10,18 +10,26 @@ router.post('/node/add/library', (req, res) => {
       let { libname, link, category } = req.body;
 
       const package = (req.sanitize(libname).trim()).toLowerCase();
-      link = req.sanitize(link).trim();
+      const packageLink = req.sanitize(link).trim();
       const catg = (req.sanitize(category).trim()).toLowerCase();
+
+      console.log(package)
 
       axios.get(`http://registry.npmjs.com/-/v1/search?text=${libname}&size=10`)
         .then(acct => {
 
           let details = acct.data.objects
-            .filter(o => link === o.package.links.repository)[0] || acct.data.objects[0];
+            .filter(o => packageLink === o.package.links.repository)[0] || acct.data.objects[0];            
 
-          addLibrary(package, JSON.stringify(details), encodeURIComponent(catg), (resolve) => {
-            res.status(200).json(resolve);
-          });
+          addLibrary(package,
+            encodeURIComponent(packageLink),
+            JSON.stringify(details),
+            encodeURIComponent(catg),
+            (resolve) => {
+              console.log(resolve)
+
+              res.status(200).json(resolve);
+            });
 
         })
         .catch(error => console.log(error));
@@ -42,7 +50,8 @@ router.get('/node/libraries', (req, res) => {
 
         packages.forEach(p => {
           p.details = JSON.parse(p.details);
-          p.category = decodeURIComponent(p.category)
+          p.category = decodeURIComponent(p.category);
+          p.link = decodeURIComponent(p.link);
           parsePackges.push(p);
         });
 

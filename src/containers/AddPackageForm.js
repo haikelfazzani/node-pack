@@ -1,14 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import { addPackageMode } from '../service/providers';
 
 import Input from '../components/Input';
 import Select from '../components/Select';
 
-import categories from '../data/categories';
+import categories from '../service/categories';
 import CaptchaVerif from '../containers/CaptchaVerif';
 
-const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
-const devLink = "http://localhost:3001/api/node/add/library";
 
 export default class AddPackageForm extends React.Component {
 
@@ -37,15 +36,16 @@ export default class AddPackageForm extends React.Component {
 
     const { captchatText, rndText } = this.state;
     this.setState({ submitted: true });
-
+    
     if (captchatText === rndText) {
+
       let { libname, link, category } = this.state;
 
       if (libname.length > 2 && link.length > 20) {
-
+        
         this.setState({ bntDisbale: true });
 
-        axios.post(prodLink, { libname, link, category })
+        axios.post(addPackageMode(), { libname, link, category })
           .then(res => {
             this.setState({
               serverResp: res.data,
@@ -61,7 +61,7 @@ export default class AddPackageForm extends React.Component {
       }
     }
     else {
-      this.setState({ errorMsg: "invalid captcha" })
+      this.setState({ errorMsg: "Invalid captcha code, please try again." })
     }
 
   }
@@ -81,7 +81,7 @@ export default class AddPackageForm extends React.Component {
             name="libname"
             value={this.state.libname}
             handleChange={this.handleChange}
-            placeholder="Package name" />
+            placeholder="Package name : express" />
 
           <Input htmlFor="link"
             lablText="link"
@@ -111,8 +111,8 @@ export default class AddPackageForm extends React.Component {
 
         </form>
 
-        {(this.state.msg.length > 0 || this.state.errorMsg.length < 0) &&
-          (<div className="alert alert-dark flipInX" role="alert">
+        {(this.state.msg.length > 0 || this.state.errorMsg.length > 0) &&
+          (<div className="alert alert-dark" role="alert">
             {this.state.msg || this.state.errorMsg}
           </div>)
         }

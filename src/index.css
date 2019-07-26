@@ -34,6 +34,11 @@ form {
   border-radius: 5px;
 }
 
+canvas, .form-control {
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

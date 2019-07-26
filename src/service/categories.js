@@ -10,10 +10,11 @@ const categories = [
   "http & real-time",
   "miscellaneous",
   "process-management",
-  "security & testing",
+  "security",
   "serialization",
   "streams",
   "templating",
+  "testing",
   "tools",
   "utility",
   "web-frameworks"

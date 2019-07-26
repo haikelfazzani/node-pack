@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { getLibrariesMode } from '../service/providers';
+
 import Header from '../containers/Header';
 import Loading from '../components/Loading';
 import ListGroup from './ListGroup';
-import categories from '../data/categories';
+import categories from '../service/categories';
 import Select from '../components/Select';
-
-const prodLink = "https://node-pack.herokuapp.com/api/node/libraries";
-const devLink = "http://localhost:3001/api/node/libraries";
 
 export default class LoadPackages extends React.Component {
 
@@ -28,7 +27,7 @@ export default class LoadPackages extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(prodLink)
+    axios.get(getLibrariesMode())
       .then(res => {
         const data = res.data
         this.setState({ packages: data, loading: false });
