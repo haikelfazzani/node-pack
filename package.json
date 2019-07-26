@@ -18,13 +18,12 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "start": "node server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "run-server": "node server.js",
-    "dev-server": "npm run build && nodemon server.js"
+    "run-server": "node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
