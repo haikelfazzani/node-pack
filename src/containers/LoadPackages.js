@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
+
 import { getLibrariesMode } from '../service/providers';
 
 import Header from '../containers/Header';
@@ -27,6 +29,8 @@ export default class LoadPackages extends React.Component {
   }
 
   componentDidMount() {
+    axiosRetry(axios, { retries: 3 });
+
     axios.get(getLibrariesMode())
       .then(res => {
         const data = res.data
