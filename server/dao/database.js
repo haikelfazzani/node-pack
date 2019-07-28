@@ -8,18 +8,10 @@ const remoteDB = {
 };
 
 
-const localDB = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'gestion_parc'
-}
-
 const connection = mysql.createConnection(remoteDB);
 
-connection.connect( async (err) => {
-    if (err) throw err;
-    await console.log("connected")
+connection.connect((err) => {
+  console.log("connected");
 });
 
 module.exports = connection;

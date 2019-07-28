@@ -1,24 +1,28 @@
 const connection = require("./database");
+var SqlString = require('sqlstring');
+
 const libraries = {
   table: "node_libraries",
   id: "id",
-  package: "package",
+  packageName: "package",
   link: "link",
   details: "details",
   category: "category"
 };
 
 
-function addLibrary(package, link, details, category, resolve) {
+function addLibrary(packageName, link, details, category, resolve) {
 
   const sql = `insert into ${libraries.table}(
-    ${libraries.package}, ${libraries.link}, ${libraries.details}, ${libraries.category}
+    ${libraries.packageName}, ${libraries.link}, ${libraries.details}, ${libraries.category}
   ) 
-  VALUES( '${package}' , '${link}' ,'${details}' ,  '${category}' )`;
+  VALUES( ? , ? , ? ,  ? )`;
 
-  connection.query(sql, function (err, rows) {
+  const sqlEs = SqlString.format(sql, [packageName, link, details, category]);
+
+  connection.query(sqlEs, function (err, rows) {
     resolve({
-      err: err ? `Sorry, the ${package} already exits!` : "",
+      err: err ? `Sorry, the ${packageName} already exits!` : "",
       result: err ? "" : "Successful submit :) !"
     });
   });

@@ -1,4 +1,4 @@
-const modeDev = false;
+const modeDev = true;
 
 function addPackageMode() {
   const prodLink = "https://node-pack.herokuapp.com/api/node/add/library";
