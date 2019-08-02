@@ -6,12 +6,12 @@ import { sortByPopularity, dataSlice } from '../service/ListService';
 import ModalPortal from '../components/ModalPortal';
 import Modal from './Modal';
 
-function Keywords({keywords}) {
+function Keywords({ keywords }) {
   return (
     <>
-    {keywords.map((k,i) => <span key={i} className="badge badge-pill badge-light mr-2">
-      {k}
-    </span>)}
+      {keywords.map((k, i) => <span key={i} className="badge badge-pill badge-light mr-2">
+        {k}
+      </span>)}
     </>
   )
 }
@@ -28,7 +28,7 @@ export default class ListGroup extends React.Component {
         itemsPerPage: 5,
         begin: 0,
         end: itemsPerPage,
-        numPage: 1,
+        numPage: 1
       },
       listOfPackages: sortByPopularity(this.props.data),
       category: this.props.category,
@@ -102,7 +102,7 @@ export default class ListGroup extends React.Component {
                     <h5 className="mb-1">
                       {l.package} <small className="text-muted">v{l.details.package.version}</small>
                     </h5>
-                  </a>                  
+                  </a>
 
                   <div>
                     <Badge clx="badge badge-success" toolTip="Popularity"
@@ -141,7 +141,11 @@ export default class ListGroup extends React.Component {
                 <button className="page-link"
                   onClick={() => begin > 0 &&
                     this.setState({
-                      pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage, numPage: numPage - 1 }
+                      pagination: {
+                        begin: begin - itemsPerPage,
+                        end: end - itemsPerPage,
+                        numPage: numPage - 1
+                      }
                     })
                   }>
                   Previous
@@ -149,14 +153,20 @@ export default class ListGroup extends React.Component {
               </li>
 
               <li className="page-item">
-                <button type="button" className="page-link">{numPage}</button>
+                <button type="button" className="page-link">
+                  {numPage}/{Math.ceil(listOfPackages.length / itemsPerPage)}
+                </button>
               </li>
 
               <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
                 <button className="page-link"
                   onClick={() => end < listOfPackages.length &&
                     this.setState({
-                      pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage, numPage: numPage + 1 }
+                      pagination: {
+                        begin: begin + itemsPerPage,
+                        end: end + itemsPerPage,
+                        numPage: numPage + 1
+                      }
                     })
                   }>
                   Next
