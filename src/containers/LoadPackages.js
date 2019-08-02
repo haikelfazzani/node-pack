@@ -52,16 +52,19 @@ export default class LoadPackages extends React.Component {
             <div className="col-md-3 mb-3">
 
               <Select clx="form-group list-categories m-0"
+              isLabelHide={true}
                 options={categories} handleChange={this.handleChange}
               />
 
-              <ul className="list-group font-s14" id="list-categories" style={{ padding: "15px 5px",
-    backgroundColor: "#fff"}}>
+              <ul className="list-group font-s14" id="list-categories" 
+              style={{ padding: "15px 5px", backgroundColor: "#fff"}}>
+
                 {categories.map((c, idx) =>
                   <li key={idx} onClick={() => this.setState({ category: c })}
                     className="list-group-item pb-1 pt-0" id="list-packages">{c}
                   </li>
                 )}
+
               </ul>
             </div>
 
