@@ -15,7 +15,9 @@ function formatDownload(a) {
   let s = "";
 
   (a + "").split("").reverse().forEach((v, i) => {
-    if (i !== 0 && i % 3 === 0) { s += " "; }
+    if (i !== 0 && i % 3 === 0) { 
+      s += " "; 
+    }
     s += v
   });
 
