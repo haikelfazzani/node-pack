@@ -6,15 +6,17 @@ import { sortByPopularity, dataSlice } from '../service/ListService';
 import ModalPortal from '../components/ModalPortal';
 import Modal from './Modal';
 
-function Keywords({ keywords }) {
+function Keywords({ keywords, category }) {
+
   return (
     <>
-      {keywords.map((k, i) =>
-        <span key={i} className="badge badge-pill badge-light mr-2">
-          {k}
-        </span>)}
+      {keywords && keywords.length > 0 ?
+        (keywords.map((k, i) =>
+          <span key={i} className="badge badge-pill badge-light mr-2">{k}</span>))
+        : (<span className="badge badge-pill badge-light mr-2">{category}</span>)}
     </>
   )
+
 }
 
 const itemsPerPage = 8;
@@ -128,7 +130,7 @@ export default class ListGroup extends React.Component {
                   <small className="text-muted">{l.details.package.description}</small>
                 </div>
 
-                <Keywords keywords={l.details.package.keywords} />
+                <Keywords keywords={l.details.package.keywords} category={l.category} />
 
               </div>
             )

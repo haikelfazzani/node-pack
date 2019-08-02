@@ -15,7 +15,7 @@ export default class AddPackageForm extends React.Component {
     super(props);
     this.state = {
       libname: "", link: "",
-      category: "",
+      category: categories.slice(1)[0],
       submitted: false, bntDisbale: false,
       serverResp: "",
       msg: "", errorMsg: "",
