@@ -62,7 +62,7 @@ export default class LoadPackages extends React.Component {
                 {categories.map((c, idx) =>
                   <li key={idx} onClick={() => this.setState({ category: c })}
                     className="list-group-item pb-1 pt-0" id="list-packages">
-                      <button className="btn btn-link font-s14">{c}</button>
+                      <button className="btn btn-link font-s14 w-100 text-left">{c}</button>
                   </li>
                 )}
 

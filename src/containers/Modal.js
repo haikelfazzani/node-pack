@@ -5,15 +5,6 @@ import { formatDownload } from '../service/ListService';
 import ExternalLink from '../components/ExternalLink';
 import LiBadge from '../components/LiBadge';
 
-function PackageBadges({ badges }) {
-  return (<>
-    {badges && badges.length > 0 &&
-      badges.map((b, indx) => {
-        return (<img key={indx} src={b.urls.original || b.urls.shields} alt=".." className="mr-2" />)
-      })}
-  </>)
-}
-
 export default class Modal extends React.Component {
 
   state = { packageDetails: this.props.p, details: {}, downloads: {}, loading: true }
@@ -49,7 +40,7 @@ export default class Modal extends React.Component {
               (<>
                 <div className="modal-header">
                   <h5 className="modal-title text-uppercase">
-                    {packageDetails.package}
+                    {packageDetails.package} <img src={"https://img.shields.io/npm/v/" + packageDetails.package + ".svg"} alt="version" />
                     <div><p className="text-muted font-s14 m-0 p-0">{details.collected.metadata.description}</p></div>
                   </h5>
                   <button type="button" className="close"
@@ -59,8 +50,6 @@ export default class Modal extends React.Component {
                 </div>
 
                 <div className="modal-body">
-
-                  <div className="mb-3"><PackageBadges badges={details.collected.source.badges} /> </div>
 
                   <ul className="list-group">
                     <LiBadge

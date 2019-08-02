@@ -111,6 +111,7 @@ export default class ListGroup extends React.Component {
                 <div>
                   <small className="text-muted">{l.details.package.description}</small>
                 </div>
+                
               </div>
             )
           })}
