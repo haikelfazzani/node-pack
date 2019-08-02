@@ -10,7 +10,7 @@ export default function Nav() {
     <nav className="navbar navbar-expand-md navbar-dark bg-dark py-3 p-w">
 
       <div className="order-0 w-100">
-        <Link to="/" className="navbar-brand text-capitalize logo mx-auto">
+        <Link to="/" className="navbar-brand text-capitalize logo mx-auto flipInY">
           <img src={logo} height="30" alt="" />
         </Link>
 
