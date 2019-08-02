@@ -14,7 +14,11 @@ export default class ListGroup extends React.Component {
     super(props);
     this.state = {
       pagination: {
-        totalItems: this.props.data.length, itemsPerPage: 5, begin: 0, end: itemsPerPage
+        totalItems: this.props.data.length,
+        itemsPerPage: 5,
+        begin: 0,
+        end: itemsPerPage,
+        numPage: 1,
       },
       listOfPackages: sortByPopularity(this.props.data),
       category: this.props.category,
@@ -47,7 +51,8 @@ export default class ListGroup extends React.Component {
       pagination: {
         totalItems: this.state.listOfPackages.length,
         begin: 0,
-        end: itemsPerPage
+        end: itemsPerPage,
+        numPage: 1
       }
     });
   }
@@ -63,7 +68,7 @@ export default class ListGroup extends React.Component {
   render() {
 
     let { listOfPackages, pagination } = this.state;
-    let { totalItems, begin, end } = pagination;
+    let { totalItems, begin, end, numPage } = pagination;
 
     return (
       <>
@@ -111,7 +116,7 @@ export default class ListGroup extends React.Component {
                 <div>
                   <small className="text-muted">{l.details.package.description}</small>
                 </div>
-                
+
               </div>
             )
           })}
@@ -124,18 +129,22 @@ export default class ListGroup extends React.Component {
                 <button className="page-link"
                   onClick={() => begin > 0 &&
                     this.setState({
-                      pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage }
+                      pagination: { begin: begin - itemsPerPage, end: end - itemsPerPage, numPage: numPage - 1 }
                     })
                   }>
                   Previous
               </button>
               </li>
 
+              <li className="page-item">
+                <button type="button" class="page-link">{numPage}</button>
+              </li>
+
               <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
                 <button className="page-link"
                   onClick={() => end < listOfPackages.length &&
                     this.setState({
-                      pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage }
+                      pagination: { begin: begin + itemsPerPage, end: end + itemsPerPage, numPage: numPage + 1 }
                     })
                   }>
                   Next
