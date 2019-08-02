@@ -75,6 +75,15 @@ label { color: #a2a2a2; }
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important; 
 }
 
+.badge-pill { 
+  background-color: #dcdcdc !important;
+  color: #8a8a8a !important;
+  font-size: 10px;
+  font-weight: 100;
+  box-shadow: none !important; 
+  cursor: pointer;
+}
+
 .alert-nfound {
   background-color: #ffffff;
   border-color: #ececec;
@@ -136,9 +145,12 @@ footer p {
   
   .w-25, .w-50, .w-75 { width: 100% !important; }
   .p-w { padding: 10px 20px !important; width: 100% !important; }
+
   .list-categories { display: block; }
-  #list-categories { display: none; }
-  .display-5 { font-size: 22px; }
+
+  .badge-pill, #list-categories { display: none; }
+
+  .display-5 { font-size: 22px; }  
 
   footer p {
     line-height: 20px;
@@ -146,6 +158,7 @@ footer p {
 }
 
 @media (min-width: 576px) {
+
   .modal-dialog {
     max-width: 400px;
     margin: 1.75rem auto;

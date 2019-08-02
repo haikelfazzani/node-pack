@@ -6,6 +6,16 @@ import { sortByPopularity, dataSlice } from '../service/ListService';
 import ModalPortal from '../components/ModalPortal';
 import Modal from './Modal';
 
+function Keywords({keywords}) {
+  return (
+    <>
+    {keywords.map((k,i) => <span key={i} className="badge badge-pill badge-light mr-2">
+      {k}
+    </span>)}
+    </>
+  )
+}
+
 const itemsPerPage = 8;
 
 export default class ListGroup extends React.Component {
@@ -92,7 +102,7 @@ export default class ListGroup extends React.Component {
                     <h5 className="mb-1">
                       {l.package} <small className="text-muted">v{l.details.package.version}</small>
                     </h5>
-                  </a>
+                  </a>                  
 
                   <div>
                     <Badge clx="badge badge-success" toolTip="Popularity"
@@ -117,6 +127,8 @@ export default class ListGroup extends React.Component {
                   <small className="text-muted">{l.details.package.description}</small>
                 </div>
 
+                <Keywords keywords={l.details.package.keywords} />
+
               </div>
             )
           })}
@@ -137,7 +149,7 @@ export default class ListGroup extends React.Component {
               </li>
 
               <li className="page-item">
-                <button type="button" class="page-link">{numPage}</button>
+                <button type="button" className="page-link">{numPage}</button>
               </li>
 
               <li className={end < listOfPackages.length ? "page-item" : "page-item disabled"}>
