@@ -1,5 +1,5 @@
 import React from 'react';
-import { Captcha } from '@haikel/min-captcha';
+import Captcha from '@haikel/min-captcha';
 import Input from '../components/Input';
 
 const captcha = new Captcha();

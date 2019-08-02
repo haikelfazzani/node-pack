@@ -66,8 +66,9 @@ label { color: #a2a2a2; }
   cursor: pointer;
 }
 
-#list-packages:hover,
-#list-packages:active { color: #343a40 !important; }
+#list-packages button:hover,
+#list-packages button:focus,
+#list-packages button:active { color: #343a40 !important; }
 
 .badge { 
   cursor: pointer;
@@ -149,4 +150,6 @@ footer p {
     max-width: 400px;
     margin: 1.75rem auto;
   }
+  .modal-content { overflow: visible !important}
 }
+

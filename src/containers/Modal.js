@@ -43,7 +43,7 @@ export default class Modal extends React.Component {
         style={{ display: this.props.isOpen ? "block" : "none", backgroundColor: "#0000009c" }}>
 
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
+          <div className="modal-content overflow-auto">
 
             {loading ? <Loading /> :
               (<>
