@@ -8,7 +8,7 @@ function AddPackageHeader() {
       <h2>ADD SOMETHING HELPFUL</h2>
       <p className="text-muted m-0">
         Please make sure the submission is not a fake package (or module),
-          </p>
+      </p>
       <p>All fields are required *</p>
     </div>
   )

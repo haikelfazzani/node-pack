@@ -3,7 +3,7 @@ import Captcha from '@haikel/min-captcha';
 import Input from '../components/Input';
 
 const captcha = new Captcha();
-let rnd = captcha.getRndString({ nbChar: 4 });
+let rnd = captcha.getRndString({ nbChars: 4 });
 
 const canvas = captcha.setupCanvas({ randString: rnd, sizeAndFont: "30px monospace" });
 

@@ -9,9 +9,10 @@ import Modal from './Modal';
 function Keywords({ keywords }) {
   return (
     <>
-      {keywords.map((k, i) => <span key={i} className="badge badge-pill badge-light mr-2">
-        {k}
-      </span>)}
+      {keywords.map((k, i) =>
+        <span key={i} className="badge badge-pill badge-light mr-2">
+          {k}
+        </span>)}
     </>
   )
 }
@@ -149,7 +150,7 @@ export default class ListGroup extends React.Component {
                     })
                   }>
                   Previous
-              </button>
+                </button>
               </li>
 
               <li className="page-item">
@@ -170,7 +171,7 @@ export default class ListGroup extends React.Component {
                     })
                   }>
                   Next
-              </button>
+                </button>
               </li>
             </ul>
           </nav>
