@@ -30,7 +30,7 @@ export default class Modal extends React.Component {
     let { packageDetails, details, downloads, loading } = this.state;
 
     return (
-      <div className="modal"
+      <div className="modal modal-dialog-scrollable"
         style={{ display: this.props.isOpen ? "block" : "none", backgroundColor: "#0000009c" }}>
 
         <div className="modal-dialog" role="document">
