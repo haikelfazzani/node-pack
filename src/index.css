@@ -151,11 +151,7 @@ footer {
 }
 
 @media (min-width: 576px) {
-
-  .modal-dialog {
-    max-width: 400px;
-    margin: 1.75rem auto;
-  }
-  .modal-content { overflow: visible !important}
+.modal-dialog-scrollable { max-height: 100%;} 
 }
 
+.modal-dialog-scrollable { max-height: 100%;}

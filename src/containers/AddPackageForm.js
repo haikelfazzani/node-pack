@@ -36,13 +36,13 @@ export default class AddPackageForm extends React.Component {
 
     const { captchatText, rndText } = this.state;
     this.setState({ submitted: true });
-    
+
     if (captchatText === rndText) {
 
       let { libname, link, category } = this.state;
 
       if (libname.length > 2 && link.length > 20) {
-        
+
         this.setState({ bntDisbale: true });
 
         axios.post(addPackageMode(), { libname, link, category })

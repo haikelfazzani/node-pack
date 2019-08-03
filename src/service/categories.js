@@ -15,7 +15,6 @@ const categories = [
   "security",
   "templating",
   "testing",
-  "tools",
   "utility",
   "web-frameworks"
 ];
