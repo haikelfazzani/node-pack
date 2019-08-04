@@ -49,68 +49,70 @@ export default class Modal extends React.Component {
                   </button>
                 </div>
 
-                {details.collected.github ?
-                  (<div className="modal-body">
+                <div className="modal-body">
 
-                    <ul className="list-group">
-                      <LiBadge
-                        text="current version"
-                        badgeText={details.collected.metadata.version}
-                      />
+                  <ul className="list-group">
+                    <LiBadge
+                      text="current version"
+                      badgeText={details.collected.metadata.version}
+                    />
 
-                      <LiBadge
-                        text="weekly downloads"
-                        badgeText={formatDownload(downloads.downloads)}
-                      />
+                    <LiBadge
+                      text="weekly downloads"
+                      badgeText={formatDownload(downloads.downloads)}
+                    />
 
-                      <LiBadge
-                        text="stars"
-                        badgeText={formatDownload(details.collected.github.starsCount)}
-                      />
+                    {details.collected.github &&
+                      (<>
+                        <LiBadge
+                          text="stars"
+                          badgeText={formatDownload(details.collected.github.starsCount)}
+                        />
 
-                      <LiBadge
-                        text="forks"
-                        badgeText={formatDownload(details.collected.github.forksCount)}
-                      />
+                        <LiBadge
+                          text="forks"
+                          badgeText={formatDownload(details.collected.github.forksCount)}
+                        />
 
-                      <LiBadge
-                        text="issues"
-                        badgeText={formatDownload(details.collected.github.issues.count)}
-                      />
+                        <LiBadge
+                          text="issues"
+                          badgeText={formatDownload(details.collected.github.issues.count)}
+                        />
 
-                      <LiBadge
-                        text="open issues"
-                        badgeText={formatDownload(details.collected.github.issues.openCount)}
-                      />
+                        <LiBadge
+                          text="open issues"
+                          badgeText={formatDownload(details.collected.github.issues.openCount)}
+                        />
 
-                      <LiBadge
-                        text="license"
-                        badgeText={details.collected.metadata.license}
-                      />
-                    </ul>
+                        <LiBadge
+                          text="license"
+                          badgeText={details.collected.metadata.license}
+                        />
+                      </>)
+                    }
+                  </ul>
 
-                    <div>
-                      <ExternalLink
-                        clx="btn btn-outline-primary btn-sm mt-3"
-                        link={details.collected.metadata.links.npm}
-                        text="npm"
-                      />
+                  <div>
+                    <ExternalLink
+                      clx="btn btn-outline-primary btn-sm mt-3"
+                      link={details.collected.metadata.links.npm}
+                      text="npm"
+                    />
 
-                      <ExternalLink
-                        clx="btn btn-outline-primary btn-sm mt-3 ml-2"
-                        link={details.collected.metadata.links.homepage}
-                        text="WEBSITE"
-                      />
+                    <ExternalLink
+                      clx="btn btn-outline-primary btn-sm mt-3 ml-2"
+                      link={details.collected.metadata.links.homepage}
+                      text="WEBSITE"
+                    />
 
-                      <ExternalLink
-                        clx="btn btn-outline-primary btn-sm mt-3 ml-2"
-                        link={details.collected.metadata.links.repository}
-                        text="repository"
-                      />
-                    </div>
+                    <ExternalLink
+                      clx="btn btn-outline-primary btn-sm mt-3 ml-2"
+                      link={details.collected.metadata.links.repository}
+                      text="repository"
+                    />
+                  </div>
 
-                  </div>)
-                : (<p className="ml-3 mt-3">Nothing found, please try again later!</p>)}
+                </div>
               </>
               )
             }

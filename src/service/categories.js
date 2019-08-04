@@ -1,11 +1,10 @@
 const categories = [
   "all",
-  "authentication",
-  "authorization",
-  "cms",
-  "database-drivers",
+  "auth & authorization",
+  "build-tools",
+  "cms & email",
+  "database",
   "debugging & logging",
-  "email",
   "filesystem",
   "http & real-time",
   "miscellaneous",
@@ -13,8 +12,10 @@ const categories = [
   "parsing & compressing",
   "process-management",
   "security",
+  "streams",
   "templating",
   "testing",
+  "text & image",
   "utility",
   "web-frameworks"
 ];
