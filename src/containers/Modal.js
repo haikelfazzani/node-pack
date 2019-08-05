@@ -1,9 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+
 import Loading from '../components/Loading';
-import { formatDownload } from '../service/ListService';
 import ExternalLink from '../components/ExternalLink';
 import LiBadge from '../components/LiBadge';
+
+import { formatDownload } from '../service/ListService';
+import { npmEndPoints } from '../service/providers';
 
 export default class Modal extends React.Component {
 
@@ -15,8 +18,8 @@ export default class Modal extends React.Component {
     if (props.p.package && props.p.package.length > 0) {
 
       axios.all([
-        axios.get(`https://api.npms.io/v2/package/${props.p.package}`),
-        axios.get(`https://api.npmjs.org/downloads/point/last-week/${props.p.package}`)
+        axios.get(`${npmEndPoints.packageDetails}/${props.p.package}`),
+        axios.get(`${npmEndPoints.npmDownloads}/${props.p.package}`)
       ])
         .then(axios.spread((acct, perms) => {
           this.setState({

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { addPackageMode } from '../service/providers';
+import { serverEndPoints } from '../service/providers';
 
 import Input from '../components/Input';
 import Select from '../components/Select';
@@ -45,7 +45,7 @@ export default class AddPackageForm extends React.Component {
 
         this.setState({ bntDisbale: true });
 
-        axios.post(addPackageMode(), { libname, link, category })
+        axios.post(serverEndPoints.addPackage, { libname, link, category })
           .then(res => {
             this.setState({
               serverResp: res.data,

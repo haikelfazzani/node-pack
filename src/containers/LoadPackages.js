@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-import { getLibrariesMode } from '../service/providers';
+import { serverEndPoints } from '../service/providers';
 
 import Header from '../containers/Header';
 import Loading from '../components/Loading';
@@ -31,7 +31,7 @@ export default class LoadPackages extends React.Component {
   componentDidMount() {
     axiosRetry(axios, { retries: 3 });
 
-    axios.get(getLibrariesMode())
+    axios.get(serverEndPoints.getPackages)
       .then(res => {
         const data = res.data
         this.setState({ packages: data, loading: false });
@@ -52,17 +52,17 @@ export default class LoadPackages extends React.Component {
             <div className="col-md-3 mb-3">
 
               <Select clx="form-group list-categories m-0"
-              isLabelHide={true}
+                isLabelHide={true}
                 options={categories} handleChange={this.handleChange}
               />
 
-              <ul className="list-group font-s14" id="list-categories" 
-              style={{ padding: "15px 5px", backgroundColor: "#fff"}}>
+              <ul className="list-group font-s14" id="list-categories"
+                style={{ padding: "15px 5px", backgroundColor: "#fff" }}>
 
                 {categories.map((c, idx) =>
                   <li key={idx} onClick={() => this.setState({ category: (c.trim()).toLowerCase() })}
                     className="list-group-item pb-1 pt-0" id="list-packages">
-                      <button className="btn btn-link font-s14 w-100 text-left">{c}</button>
+                    <button className="btn btn-link font-s14 w-100 text-left">{c}</button>
                   </li>
                 )}
 
