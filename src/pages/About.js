@@ -24,19 +24,36 @@ export default function About() {
             </div>
 
             <div className="mb-5">
-              <h3 className="text-muted">Add and remove package</h3>
-              <p>You could help us by adding or removing a package</p>
-              <Link to="/add-package" className="btn btn-primary font-s14 mr-2">Add Package</Link>
-              <Link className="btn btn-primary font-s14" to="/remove-package">remove package</Link>
+              <h3 className="text-muted">Bugs and suggestions</h3>
+              <p>all suggestions/feedbacks/pull requests and issues are welcome.</p>
+              <ExternalLink
+                clx="btn btn-primary font-s14 mr-2"
+                link="https://github.com/haikelfazzani/node-pack"
+                text="repository"
+              />
+              <ExternalLink clx="btn btn-primary font-s14" link={githubLink} text="issues" />
             </div>
 
           </div>
 
           <div className="col-md-6">
+
             <div className="mb-5">
-              <h3 className="text-muted">Bugs and suggestions</h3>
-              <p>If you find any bugs or have a suggestion, please open an issue on github!</p>
-              <ExternalLink clx="btn btn-primary font-s14" link={githubLink} text="issues" />
+              <h3 className="text-muted">Add and remove package</h3>
+              <p>You could help us by adding or removing a package.</p>
+              <Link to="/add-package" className="btn btn-primary font-s14 mr-2">Add Package</Link>
+              <Link className="btn btn-primary font-s14" to="/remove-package">remove package</Link>
+            </div>
+
+            <div className="mb-5">
+              <h3 className="text-muted">Inspiration</h3>
+
+              <ul>
+                <li><ExternalLink link="https://www.npmtrends.com" text="npmtrends" /></li>
+                <li><ExternalLink link="https://www.javascripting.com" text="javascripting" /></li>
+                <li><ExternalLink link="https://bestofjs.org" text="bestofjs" /></li>
+              </ul>
+
             </div>
 
 

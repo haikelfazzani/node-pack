@@ -7,7 +7,7 @@ export default function Header(props) {
   return (
     <div className="jumbotron text-center w-100">
       <p className="lead text-uppercase display-5 w-50 mx-auto m-0">
-        Amazing Node.js Open Source
+        All Amazing Node.js Open Source
       </p>
       <p className="text-uppercase">frameworks - packages - libraries</p>
 
