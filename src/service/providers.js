@@ -15,6 +15,7 @@ const serverEndPoints = {
 }
 
 const npmEndPoints = {
+  npmSearch: "http://registry.npmjs.com/-/v1/search?text=koa&size=10",
   packageDetails: `https://api.npms.io/v2/package`,
   npmDownloads: "https://api.npmjs.org/downloads/point/last-week",
   npmDownloadsFromTo: "https://api.npmjs.org/downloads/range",
