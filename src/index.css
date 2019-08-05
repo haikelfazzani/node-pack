@@ -19,6 +19,8 @@ body {
 }
 
 
+.bg-inherit { background-color: inherit !important; }
+
 a { text-decoration: none !important; }
 
 .logo { color:#007bff; font-family: Pacifico; }
