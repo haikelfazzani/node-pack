@@ -128,7 +128,9 @@ canvas {
   border-radius: 5px;
 }
 
-
+hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.46);
+}
 
 footer {
   border-top: 1px #e5e4ec solid;

@@ -42,14 +42,22 @@ export default class Modal extends React.Component {
             {loading ? <Loading /> :
               (<>
                 <div className="modal-header">
+                  
                   <h5 className="modal-title text-uppercase">
-                    {packageDetails.package} <img src={"https://img.shields.io/npm/v/" + packageDetails.package + ".svg"} alt="version" />
-                    <div><p className="text-muted font-s14 m-0 p-0">{details.collected.metadata.description}</p></div>
+                    <span className="mr-2">{packageDetails.package}</span>
+                    <img src={npmEndPoints.minified + packageDetails.package} alt="package size" />
+                    <div>
+                      <p className="text-muted font-s14 m-0 p-0">
+                        {details.collected.metadata.description}
+                      </p>
+                    </div>                    
                   </h5>
+
                   <button type="button" className="close"
                     onClick={() => this.props.handleClose()}>
                     <span aria-hidden="true">&times;</span>
                   </button>
+
                 </div>
 
                 <div className="modal-body">
