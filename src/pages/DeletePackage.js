@@ -60,13 +60,13 @@ export default class DeletePackage extends Component {
           <title>NodePack - delete package</title>
         </Helmet>
 
-        <div className="text-center">
-          <h2>Delete Package</h2>
+        <div className="alert alert-danger text-uppercase mb-3" role="alert">
+          <h3 className="alert-heading">Delete Package</h3>
+          <hr />
           <p className="p-0 m-0">Why you need to delete a package already added?</p>
           <p className="p-0 m-0">Is there anything wrong with it!</p>
           <p className="p-0 m-0">if it's, please make sure to enter the correct name.</p>
         </div>
-
 
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

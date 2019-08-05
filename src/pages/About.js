@@ -51,7 +51,8 @@ export default function About() {
               <ul>
                 <li><ExternalLink link="https://www.npmtrends.com" text="npmtrends" /></li>
                 <li><ExternalLink link="https://www.javascripting.com" text="javascripting" /></li>
-                <li><ExternalLink link="https://bestofjs.org" text="bestofjs" /></li>
+                <li><ExternalLink link="https://www.bestofjs.org" text="bestofjs" /></li>
+                <li><ExternalLink link="https://www.bundlephobia.com" text="bundlephobia" /></li>
               </ul>
 
             </div>
