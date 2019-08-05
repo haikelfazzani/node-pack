@@ -9,7 +9,7 @@ export default function Header(props) {
       <p className="lead text-uppercase display-5 w-50 mx-auto m-0">
         Amazing Node.js Open Source
       </p>
-      <p className="text-uppercase text-muted">frameworks - packages - libraries</p>
+      <p className="text-uppercase">frameworks - packages - libraries</p>
 
       <div className="w-25 mx-auto">
         <input type="search"

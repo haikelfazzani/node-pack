@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ExternalLink from './ExternalLink';
 
 const githubLink = "https://github.com/haikelfazzani/node-pack/issues";
@@ -15,6 +16,7 @@ export default function Footer() {
               link="https://github.com/haikelfazzani"
               text="HAIKEL FAZZANI" />
           </p>
+          <Link className="btn btn-link font-s14" to="/delete-package">Delete package</Link>
         </div>
 
         <div className="col-md-4"></div>

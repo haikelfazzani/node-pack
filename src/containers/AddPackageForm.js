@@ -76,23 +76,23 @@ export default class AddPackageForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="mb-3" ref="myCanvas">
 
           <Input htmlFor="libname"
-            lablText="package name"
+            lablText="package name*"
             type="text"
             name="libname"
             value={this.state.libname}
             handleChange={this.handleChange}
-            placeholder="Package name : express" />
+            placeholder="Example : express" />
 
           <Input htmlFor="link"
-            lablText="link"
+            lablText="Github link*"
             type="text"
             name="link"
             value={this.state.link}
             handleChange={this.handleChange}
-            placeholder="Link : https://github.com/expressjs/express" />
+            placeholder="Example : https://github.com/expressjs/express" />
 
           <Select htmlFor="categories"
-            lablText="categories"
+            lablText="categories*"
             options={categories.slice(1)}
             name="categories"
             handleChange={this.handleSelect}

@@ -14,4 +14,12 @@ function getLibrariesMode() {
   return modeDev ? devLink : zeit;
 }
 
-export { addPackageMode, getLibrariesMode };
+function deleteLibrariesMode() {
+  //const prodLink = "http://best-of-server.openode.io/node/libraries";
+  const zeit = "https://best-of-server.now.sh/node/delete/package";
+  const devLink = "http://localhost:3000/node/delete/package";
+  return modeDev ? devLink : zeit;
+}
+
+
+export { addPackageMode, getLibrariesMode, deleteLibrariesMode };
