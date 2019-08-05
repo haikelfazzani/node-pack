@@ -57,13 +57,13 @@ export default class DeletePackage extends Component {
       <div className="container py-5 w-50 mx-auto">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>NodePack - delete package</title>
+          <title>NodePack - remove package</title>
         </Helmet>
 
         <div className="alert alert-danger text-uppercase mb-3" role="alert">
-          <h3 className="alert-heading">Delete Package</h3>
+          <h4 className="alert-heading">remove Package</h4>
           <hr />
-          <p className="p-0 m-0">Why you need to delete a package already added?</p>
+          <p className="p-0 m-0">Why you need to remove a package already added?</p>
           <p className="p-0 m-0">Is there anything wrong with it!</p>
           <p className="p-0 m-0">if it's, please make sure to enter the correct name.</p>
         </div>

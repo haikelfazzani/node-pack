@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+
 import ExternalLink from '../components/ExternalLink';
 
 const githubLink = "https://github.com/haikelfazzani/node-pack/issues";
@@ -8,6 +10,12 @@ export default function About() {
   return (
 
     <div className="jumbotron jumbotron-fluid text-uppercase mb-0">
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>NodePack - about</title>        
+      </Helmet>
+
       <div className="container">
 
         <div className="row">
