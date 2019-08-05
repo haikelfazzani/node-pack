@@ -8,6 +8,7 @@ import AddPackage from './pages/AddPackage';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import DeletePackage from './pages/DeletePackage';
+import PackageStat from './pages/PackageStat';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <div className="container-fluid p-0 m-0">
         <Route exact path="/" component={Home} />
         <Route exact path="/add-package" component={AddPackage} />
+        <Route exact path="/package-stat" component={PackageStat} />
         <Route exact path="/delete-package" component={DeletePackage} />
         
       </div>

@@ -29,6 +29,10 @@ export default function Nav() {
           </li>
 
           <li className="nav-item">
+            <Link to="/package-stat" className="nav-link">Statistics</Link>
+          </li>
+
+          <li className="nav-item">
             <Link to="/add-package" className="nav-link">Add Package</Link>
           </li>
 
