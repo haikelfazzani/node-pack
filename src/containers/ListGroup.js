@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NotFoundAlert from '../components/NotFoundAlert';
 import Badge from '../components/Badge';
 
@@ -121,8 +122,13 @@ export default class ListGroup extends React.Component {
                     />
 
                     <span className="badge badge-primary ml-2" onClick={() => this.handleModal(l)}>
-                      more
+                      info
                     </span>
+
+                    <span className="badge badge-secondary ml-2" >
+                      <Link to={"/package/"+ l.package} className="text-light">STAT</Link>
+                    </span>
+
                   </div>
                 </div>
 

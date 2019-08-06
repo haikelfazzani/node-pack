@@ -9,6 +9,7 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import DeletePackage from './pages/DeletePackage';
 import About from './pages/About';
+import PackageDetails from './pages/PackageDetails';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
       <div className="container-fluid p-0 m-0">
         <Route exact path="/" component={Home} />
+        <Route exact path="/package/:package" component={PackageDetails} />
         <Route exact path="/add-package" component={AddPackage} />
         <Route exact path="/remove-package" component={DeletePackage} />
         <Route exact path="/about" component={About} />
