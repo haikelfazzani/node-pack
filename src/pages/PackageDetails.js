@@ -7,8 +7,8 @@ export default class PackageDetails extends React.Component {
     super(props);
     this.state = {
       packName: "",
-      dateStart: "",
-      dateEnd: "",
+      dateStart: "2019-07-03",
+      dateEnd: "2019-08-03",
       submitted: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
