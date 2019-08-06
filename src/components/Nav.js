@@ -32,6 +32,10 @@ export default function Nav() {
             <Link to="/about" className="nav-link">about</Link>
           </li>
 
+          <li className="nav-item">
+            <Link to="/package/stat" className="nav-link">STAT</Link>
+          </li>
+
         </ul>
       </div>
 

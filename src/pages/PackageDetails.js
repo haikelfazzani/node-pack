@@ -1,49 +1,23 @@
 import React from 'react';
-import axios from 'axios';
-import { npmEndPoints } from '../service/providers';
-
-import { Line } from 'react-chartjs-2';
-import Loading from '../components/Loading';
+import PackageStat from '../containers/PackageStat';
 
 export default class PackageDetails extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      packName: this.props.match.params.package,
+      packName: "",
       dateStart: "",
       dateEnd: "",
-      isLoaded: false, chart: {}
+      submitted: false
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    const packName = this.props.match.params.package;
-    axios.get(npmEndPoints.npmDownloadsFromTo + "/2019-07-03:2019-08-03/" + packName)
-      .then(res => {
+  handleSubmit(e) {
+    e.preventDefault();
 
-        let days = res.data.downloads.map(r => r.day).map(d => {
-          const months = [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sept", "Oct", "Nov", "Dec"
-          ];
-          let date = new Date(d);
-          return months[date.getMonth()] + " " + date.getDay();
-        })
-
-        const data = {
-          labels: ["", ...days],
-          datasets: [
-            {
-              label: packName + ' downloads',
-              data: [0, ...res.data.downloads.map(r => r.downloads)],
-              fill: true,          // Don't fill area under the line
-              borderColor: '#007bff'  // Line color
-            }
-          ]
-        }
-        this.setState({ chart: data, isLoaded: true })
-      })
-      .catch(err => console.log(err))
+    this.setState({ submitted: true });
   }
 
   render() {
@@ -51,54 +25,67 @@ export default class PackageDetails extends React.Component {
     return (
       <>
         <div className="jumbotron jumbotron-fluid">
-          <div className="container w-50 mx-auto">
+          <div className="container">
 
-            <h3 className="text-uppercase">{this.state.packName}</h3>
+            <h3 className="text-uppercase">{this.state.packName || "package"}</h3>
 
-            <div className="row">
-              <div className="col-md-5">
-                <div className="form-group">
-                  <label htmlFor="date-start">Date start</label>
+            <form onSubmit={this.handleSubmit}>
+              <div className="row">
+
+                <div className="col-md-4">
+
+                  <input type="text"
+                    className="form-control"
+                    name="packName"
+                    value={this.state.packName}
+                    onChange={(e) => this.setState({ packName: e.target.value })}
+                    placeholder="Enter package name"
+                    required />
+
+                </div>
+
+                <div className="col-md-3">
+
                   <input type="date"
                     className="form-control"
-                    id="date-start"
                     placeholder="Enter date start"
                     value={this.state.dateStart}
                     onChange={(e) => this.setState({ dateStart: e.target.value })}
-                  />
+                    required />
                 </div>
 
-
-              </div>
-
-              <div className="col-md-5">
-                <div className="form-group">
-                  <label htmlFor="date-end">date end</label>
+                <div className="col-md-3">
                   <input type="date"
                     className="form-control"
-                    id="date-end"
                     placeholder="Enter date end"
                     value={this.state.dateEnd}
                     onChange={(e) => this.setState({ dateEnd: e.target.value })}
-                  />
+                    required />
                 </div>
+
+
+                <div className="col-md-2">
+                  <button type="submit" className="btn btn-primary btn-block">SHOW</button>
+                </div>
+
               </div>
-
-
-              <div className="col-md-2">
-                <button type="button" className="btn btn-primary"
-                  style={{ marginTop: "1.9em" }}>SHOW</button>
-              </div>
-
-            </div>
+            </form>
 
 
           </div>
         </div>
 
-        <div className="container w-50 py-5 mx-auto">
-          {this.state.isLoaded ? <Line data={this.state.chart} /> : <Loading />}
-        </div>
+        {this.state.submitted && (
+          <div className="container w-75 py-5 mx-auto">
+
+            <PackageStat
+              packName={this.state.packName}
+              dateStart={this.state.dateStart}
+              dateEnd={this.state.dateEnd}
+
+            />
+          </div>
+        )}
       </>
     )
   }
