@@ -41,7 +41,7 @@ export default class AddPackageForm extends React.Component {
 
       let { libname, link, category } = this.state;
 
-      if (libname.length > 2 && link.length > 20) {
+      if (libname.length > 0 && link.length > 20) {
 
         this.setState({ bntDisbale: true });
 
@@ -67,7 +67,7 @@ export default class AddPackageForm extends React.Component {
   }
 
   handleCaptcha(e, rnd) {
-    this.setState({ captchatText: e.target.value, rndText: rnd })
+    this.setState({ captchatText: e, rndText: rnd })
   }
 
   render() {
