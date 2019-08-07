@@ -5,11 +5,9 @@ import { Helmet } from "react-helmet";
 function AddPackageHeader() {
   return (
     <div className="alert alert-dark text-uppercase mb-3" role="alert">
-      <h4 className="alert-heading">ADD package</h4>
+      <h5 className="alert-heading">Note</h5>
       <hr />
-      <p className="m-0">
-        Please make sure the submission is not a fake package.
-      </p>
+      <p className="m-0">Please make sure the submission is a backend package.</p>
       <p>All fields are required *</p>
     </div>
   )
