@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import DeletePackage from './pages/DeletePackage';
 import About from './pages/About';
 import PackageDetails from './pages/PackageDetails';
+import BestPractice from './pages/BestPractice';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route exact path="/add-package" component={AddPackage} />
         <Route exact path="/remove-package" component={DeletePackage} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/best" component={BestPractice} />
+
       </div>
 
       <Footer />
