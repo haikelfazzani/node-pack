@@ -24,11 +24,7 @@ export default function About() {
             <h1 className="text-muted display-4">NodePack</h1>
 
             <div className="mb-5">
-              <p>IS A PLACE WHERE YOU CAN find a collections of the best nodejs packages
-                with details could help you to know some additional information
-                of adding a npm package to your project
-                and to speed up your developement process.
-              </p>
+              <p>IS A PLACE WHERE YOU CAN find a collections of the best nodejs packages</p>
             </div>
 
             <div className="mb-5">

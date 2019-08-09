@@ -76,7 +76,7 @@ export default class PackageDetails extends React.Component {
         </div>
 
         {this.state.submitted && (
-          <div className="container w-75 py-5 mx-auto">
+          <div className="container bg-light mb-5 w-75 py-5 mx-auto">
 
             <PackageStat
               packName={this.state.packName}

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { npmEndPoints } from '../service/providers';
 
-import Loading from '../components/Loading';
+import { formatDownload } from '../service/ListService';
 import { Line } from 'react-chartjs-2';
 
 
@@ -24,7 +24,7 @@ export default class PackageStat extends Component {
   componentWillReceiveProps(props) {
     if ((props.dateStart && props.dateStart.length > 5) && (props.dateEnd && props.dateEnd.length > 5)) {
 
-      this.setState({ packName:props.packName, dateStart: props.dateStart, dateEnd: props.dateEnd });
+      this.setState({ packName: props.packName, dateStart: props.dateStart, dateEnd: props.dateEnd });
 
       let { packName, dateStart, dateEnd } = props;
 
@@ -71,12 +71,30 @@ export default class PackageStat extends Component {
     return (
       <>
         {this.state.isLoaded && (
-          <div>
-            <h5>{this.state.packName}</h5>
-            <p>Total number of downloads between {this.state.dateStart} and {this.state.dateEnd}:</p>
-            <p>{this.state.totalDownloads}</p>
+          <>
+            <table className="table">
+              <thead>
+                <tr className="text-uppercase">
+                  <th scope="col">Package</th>
+                  <th scope="col">from</th>
+                  <th scope="col">to</th>
+                  <th scope="col">Total downloads</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>{this.state.packName}</td>
+                  <td>{this.state.dateStart}</td>
+                  <td>{this.state.dateEnd}</td>
+                  <td>{formatDownload(this.state.totalDownloads)}</td>
+                </tr>
+
+              </tbody>
+            </table>
+
             <Line data={this.state.chart} />
-          </div>
+          </>
         )}
       </>
     )
