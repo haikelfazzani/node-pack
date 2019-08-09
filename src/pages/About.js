@@ -24,7 +24,9 @@ export default function About() {
             <h1 className="text-muted display-4">NodePack</h1>
 
             <div className="mb-5">
-              <p>IS A PLACE WHERE YOU CAN find a collections of the best nodejs packages</p>
+              <p>IS A PLACE WHERE YOU CAN find a collections of the best open source nodejs : packages, 
+                frameworks, libraries, etc..
+              </p>
             </div>
 
             <div className="mb-5">
