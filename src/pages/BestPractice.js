@@ -17,7 +17,7 @@ export default class BestPractice extends Component {
 
   render() {
     return (
-      <div>
+      <div>best
          {this.state.isLoaded && <ReactMarkdown source={this.state.data} />}
       </div>
     )
