@@ -52,7 +52,7 @@ export default class DeletePackage extends Component {
 
                 axios.post(serverEndPoints.deletePackage, { packageName })
                   .then(res => {
-                    this.setState({ msg: res.data.result })
+                    this.setState({ msg: packageName + " package has been removed successfully" })
                   })
                   .catch(error => error)
               }
@@ -81,10 +81,10 @@ export default class DeletePackage extends Component {
         </Helmet>
 
         <h3 className="text-uppercase">Remove package</h3>
-        <Alert clx="dark" text="you can delete the uncessairy or depraceted packages" />
+        <Alert clx="dark" text="You can delete the unnecessary or deprecated packages" />
 
         <form onSubmit={this.handleSubmit}>
-          
+
           <div className="form-group">
             <label htmlFor="package-name">Package name</label>
 
@@ -120,11 +120,7 @@ export default class DeletePackage extends Component {
           <button type="reset" className="btn btn-danger">RESET</button>
         </form>
 
-        {this.state.msg &&
-          <div className="alert alert-primary mt-3" role="alert">
-            {this.state.msg}
-          </div>
-        }
+        {this.state.msg && <Alert text={this.state.msg} />}
 
       </div>
     )

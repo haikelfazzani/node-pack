@@ -7,6 +7,7 @@ import Select from '../components/Select';
 
 import categories from '../service/categories';
 import CaptchaVerif from '../containers/CaptchaVerif';
+import Alert from '../components/Alert';
 
 
 export default class AddPackageForm extends React.Component {
@@ -49,7 +50,7 @@ export default class AddPackageForm extends React.Component {
           .then(res => {
             this.setState({
               serverResp: res.data,
-              msg: res.data.result,
+              msg: libname + " package has been added successfully",
               errorMsg: res.data.err,
               libname: "", link: "", captchatText: ""
             });
@@ -112,9 +113,7 @@ export default class AddPackageForm extends React.Component {
         </form>
 
         {(this.state.msg.length > 0 || this.state.errorMsg.length > 0) &&
-          (<div className="alert alert-dark" role="alert">
-            {this.state.msg || this.state.errorMsg}
-          </div>)
+          <Alert text={this.state.msg || this.state.errorMsg} />
         }
 
       </>)
