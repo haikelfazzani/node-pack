@@ -6,50 +6,69 @@ import { serverEndPoints } from '../service/providers';
 
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import CaptchaVerif from '../containers/CaptchaVerif';
 
 export default class DeletePackage extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = { packageName: "", inputMSG: "", msg: "", disableSubmit: false };
+    this.state = {
+      packageName: "",
+      inputMSG: "",
+      msg: "",
+      captchatText: "", rndText: "",
+      disableSubmit: false
+    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCaptcha = this.handleCaptcha.bind(this);
+  }
+
+  handleCaptcha(e, rnd) {
+    this.setState({ captchatText: e, rndText: rnd })
   }
 
   handleSubmit(e) {
     e.preventDefault();
 
-    confirmAlert({
-      title: 'Confirm delete process',
-      message: 'Please make sure, the name of package is correct before clicking yes.',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => {
+    let { captchatText, rndText } = this.state;
 
-            let { packageName } = this.state;
+    if (captchatText === rndText) {
+      confirmAlert({
+        title: 'Confirm delete process',
+        message: 'Please make sure, the name of package is correct before clicking yes.',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: () => {
 
-            if (packageName && packageName.length > 2) {
+              let { packageName } = this.state;
 
-              this.setState({ disableSubmit: true })
+              if (packageName && packageName.length > 2) {
 
-              axios.post(serverEndPoints.deletePackage, { packageName })
-                .then(res => {
-                  this.setState({ msg: res.data.result })
-                })
-                .catch(error => error)
+                this.setState({ disableSubmit: true })
+
+                axios.post(serverEndPoints.deletePackage, { packageName })
+                  .then(res => {
+                    this.setState({ msg: res.data.result })
+                  })
+                  .catch(error => error)
+              }
+              else {
+                this.setState({ inputMSG: "invalid input" })
+              }
             }
-            else {
-              this.setState({ inputMSG: "invalid input" })
-            }
+          },
+          {
+            label: 'No'
           }
-        },
-        {
-          label: 'No'
-        }
-      ]
-    });
-
+        ]
+      });
+    }
+    else {
+      this.setState({ msg: "Invalid captcha code, please try again." })
+    }
   }
 
   render() {
@@ -61,7 +80,7 @@ export default class DeletePackage extends Component {
         </Helmet>
 
         <div className="alert alert-danger text-uppercase mb-3" role="alert">
-          <h4 className="alert-heading">remove Package</h4>
+          <h5 className="alert-heading">Note</h5>
           <hr />
           <p className="p-0 m-0">Why you need to remove a package already added?</p>
           <p className="p-0 m-0">Is there anything wrong with it!</p>
@@ -88,6 +107,11 @@ export default class DeletePackage extends Component {
               </small>
             }
           </div>
+
+          <CaptchaVerif
+            value={this.state.captchatText}
+            handleCaptcha={this.handleCaptcha}
+          />
 
           <button
             type="submit"

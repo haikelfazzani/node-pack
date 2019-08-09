@@ -1,6 +1,5 @@
 import React from 'react';
 import Captcha from '@haikel/min-captcha';
-import Input from '../components/Input';
 
 const captcha = new Captcha();
 let rnd = captcha.getRndString({ nbChars: 4 });
@@ -18,11 +17,20 @@ export default class CaptchaVerif extends React.Component {
       <div className="row">
         <div className="col-md-4 mt-4" ref="captcha"></div>
         <div className="col-md-8">
-          <Input
-            type="text"
-            placeholder="Enter captcha text"
-            value={this.props.value}
-            handleChange={(e) => this.props.handleCaptcha(e, rnd)} />
+
+
+          <div className="form-group">
+            <label htmlFor=""></label>
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Enter captcha text"
+              value={this.props.value}
+              onChange={(e) => this.props.handleCaptcha(e.target.value, rnd)}
+            />
+          </div>
+
+
         </div>
       </div>
     )

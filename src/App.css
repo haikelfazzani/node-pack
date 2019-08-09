@@ -1,3 +1,6 @@
+.chartjs-render-monitor {
+  background-color: inherit !important;
+}
 
 .flipInY {
   -webkit-backface-visibility: visible !important;   

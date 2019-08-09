@@ -123,6 +123,7 @@ export default class ListGroup extends React.Component {
                     <span className="badge badge-primary ml-2" onClick={() => this.handleModal(l)}>
                       more
                     </span>
+
                   </div>
                 </div>
 

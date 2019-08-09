@@ -9,7 +9,7 @@ const githubLink = "https://github.com/haikelfazzani/node-pack/issues";
 export default function About() {
   return (
 
-    <div className="jumbotron jumbotron-fluid text-uppercase mb-0">
+    <div className="jumbotron jumbotron-fluid bg-clair text-uppercase mb-0">
 
       <Helmet>
         <meta charSet="utf-8" />
