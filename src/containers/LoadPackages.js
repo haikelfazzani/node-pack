@@ -10,6 +10,8 @@ import ListGroup from './ListGroup';
 import categories from '../service/categories';
 import Select from '../components/Select';
 
+function delay() { return 3; }
+
 export default class LoadPackages extends React.Component {
 
   constructor(props) {
@@ -29,7 +31,8 @@ export default class LoadPackages extends React.Component {
   }
 
   componentDidMount() {
-    axiosRetry(axios, { retries: 3 });
+
+    axiosRetry(axios, { retries: 3, shouldResetTimeout: true, retryDelay: () => { delay() } });
 
     axios.get(serverEndPoints.getPackages)
       .then(res => {
