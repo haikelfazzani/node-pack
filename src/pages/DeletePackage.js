@@ -7,6 +7,7 @@ import { serverEndPoints } from '../service/providers';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import CaptchaVerif from '../containers/CaptchaVerif';
+import Alert from '../components/Alert';
 
 export default class DeletePackage extends Component {
 
@@ -79,15 +80,11 @@ export default class DeletePackage extends Component {
           <title>NodePack - remove package</title>
         </Helmet>
 
-        <div className="alert alert-danger text-uppercase mb-3" role="alert">
-          <h5 className="alert-heading">Note</h5>
-          <hr />
-          <p className="p-0 m-0">Why you need to remove a package already added?</p>
-          <p className="p-0 m-0">Is there anything wrong with it!</p>
-          <p className="p-0 m-0">if it's, please make sure to enter the correct name.</p>
-        </div>
+        <h3 className="text-uppercase">Remove package</h3>
+        <Alert clx="dark" text="you can delete the uncessairy or depraceted packages" />
 
         <form onSubmit={this.handleSubmit}>
+          
           <div className="form-group">
             <label htmlFor="package-name">Package name</label>
 
