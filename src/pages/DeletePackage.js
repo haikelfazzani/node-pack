@@ -81,7 +81,7 @@ export default class DeletePackage extends Component {
         </Helmet>
 
         <h3 className="text-uppercase">Remove package</h3>
-        <Alert clx="dark" text="You can delete the unnecessary or deprecated packages" />
+        <Alert clx="danger" text="You can remove the unnecessary or deprecated packages" />
 
         <form onSubmit={this.handleSubmit}>
 
@@ -120,7 +120,7 @@ export default class DeletePackage extends Component {
           <button type="reset" className="btn btn-danger">RESET</button>
         </form>
 
-        {this.state.msg && <Alert text={this.state.msg} />}
+        {this.state.msg && <Alert clx="dark mt-3" text={this.state.msg} />}
 
       </div>
     )

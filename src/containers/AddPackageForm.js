@@ -7,8 +7,17 @@ import Select from '../components/Select';
 
 import categories from '../service/categories';
 import CaptchaVerif from '../containers/CaptchaVerif';
-import Alert from '../components/Alert';
 
+import notifier from "simple-react-notifications";
+import "simple-react-notifications/dist/index.css";
+
+
+notifier.configure({
+  position: "top-right",
+  animation: {
+    duration: 2000 // overriding the default(300ms) value
+  }
+});
 
 export default class AddPackageForm extends React.Component {
 
@@ -50,10 +59,12 @@ export default class AddPackageForm extends React.Component {
           .then(res => {
             this.setState({
               serverResp: res.data,
-              msg: libname + " package has been added successfully",
-              errorMsg: res.data.err,
               libname: "", link: "", captchatText: ""
             });
+
+      
+            notifier.success(libname + " package has been added successfully" || res.data.err);
+            
           })
           .catch(err => err);
       }
@@ -111,10 +122,6 @@ export default class AddPackageForm extends React.Component {
           <button type="reset" className="btn btn-danger mt-3">RESET</button>
 
         </form>
-
-        {(this.state.msg.length > 0 || this.state.errorMsg.length > 0) &&
-          <Alert text={this.state.msg || this.state.errorMsg} />
-        }
 
       </>)
   }
