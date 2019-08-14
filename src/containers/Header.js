@@ -5,7 +5,7 @@ export default function Header(props) {
   const [searchVal, setSearchVal] = useState("");
 
   return (
-    <div className="jumbotron text-center w-100">
+    <div className="jumbotron text-center w-100 back-img">
       <p className="lead text-uppercase display-5 w-50 mx-auto m-0">
         All Amazing Node.js Open Source
       </p>

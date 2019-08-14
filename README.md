@@ -1,4 +1,3 @@
-<h2>NodePack - source of the best open source things</h2>
-<h3>Js life</h3>
+## NodePack - all the best NodeJs open source packages in one place
 
-<p>any suggestions or contributions are welcome</p>
+> suggestions/feedbacks/issues/contributions are welcome
