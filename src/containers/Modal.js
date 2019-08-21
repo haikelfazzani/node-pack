@@ -8,6 +8,8 @@ import LiBadge from '../components/LiBadge';
 import { formatDownload } from '../service/ListService';
 import { npmEndPoints } from '../service/providers';
 
+import { formatDate } from '../service/format-date';
+
 export default class Modal extends React.Component {
 
   state = { packageDetails: this.props.p, details: {}, downloads: {}, loading: true }
@@ -42,15 +44,34 @@ export default class Modal extends React.Component {
             {loading ? <Loading /> :
               (<>
                 <div className="modal-header">
-                  
+
                   <h5 className="modal-title text-uppercase">
-                    <span className="mr-2">{packageDetails.package}</span>
+                    <span className="mr-2">{packageDetails.package} </span>
                     <img src={npmEndPoints.minified + packageDetails.package} alt="package size" />
+                    <p className="text-muted font-s14 m-0 p-0">
+
+                      <span className="badge badge-info mr-2">
+                        {"v" + details.collected.metadata.version}
+                      </span>
+                      <span className="badge badge-info mr-2">
+                        {"last publish : " + formatDate(details.collected.metadata.date)}
+                      </span>
+
+                      <span className="badge badge-danger">
+                        N°dependencies : {
+                          details.collected.metadata.dependencies
+                            ? Object.keys(details.collected.metadata.dependencies).length
+                            : 0
+                        }
+                      </span>
+
+
+                    </p>
                     <div>
                       <p className="text-muted font-s14 m-0 p-0">
                         {details.collected.metadata.description}
                       </p>
-                    </div>                    
+                    </div>
                   </h5>
 
                   <button type="button" className="close"
@@ -63,11 +84,6 @@ export default class Modal extends React.Component {
                 <div className="modal-body">
 
                   <ul className="list-group">
-                    <LiBadge
-                      text="current version"
-                      badgeText={details.collected.metadata.version}
-                    />
-
                     <LiBadge
                       text="weekly downloads"
                       badgeText={formatDownload(downloads.downloads)}
@@ -101,6 +117,8 @@ export default class Modal extends React.Component {
                         />
                       </>)
                     }
+
+
                   </ul>
 
                   <div>
@@ -121,6 +139,7 @@ export default class Modal extends React.Component {
                       link={details.collected.metadata.links.repository}
                       text="repository"
                     />
+
                   </div>
 
                 </div>
