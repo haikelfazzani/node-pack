@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: Roboto;
   src: url(./fonts/Roboto-Medium.ttf);
@@ -19,9 +18,14 @@ body {
 }
 
 
-a { text-decoration: none !important; }
+a {
+  text-decoration: none !important;
+}
 
-.logo { color:#007bff; font-family: Pacifico; }
+.logo {
+  color: #007bff;
+  font-family: Pacifico;
+}
 
 
 form {
@@ -30,7 +34,8 @@ form {
   border-radius: 5px;
 }
 
-canvas, .form-control {
+canvas,
+.form-control {
   background-color: #343a40 !important;
   color: #ffffff !important;
   transition: all .3s ease;
@@ -47,8 +52,16 @@ code {
 }
 
 
-.list-group-item, .btn, label, a { text-transform: uppercase;}
-label { color: #a2a2a2; }
+.list-group-item,
+.btn,
+label,
+a {
+  text-transform: uppercase;
+}
+
+label {
+  color: #a2a2a2;
+}
 
 .jumbotron {
   background-color: #343a40 !important;
@@ -56,36 +69,44 @@ label { color: #a2a2a2; }
   border-radius: 0;
 }
 
-.bg-clair { 
-  color: #343a40 !important; 
-  background-color: inherit !important; 
+.bg-clair {
+  color: #343a40 !important;
+  background-color: inherit !important;
 }
 
 
-.list-group a h5 { color: #007bff !important; }
-.list-group a h5 small { font-size: 12px; color: #808080; }
+.list-group a h5 {
+  color: #007bff !important;
+}
 
-#list-packages {    
+.list-group a h5 small {
+  font-size: 12px;
+  color: #808080;
+}
+
+#list-packages {
   color: #007bff;
-  border:rgb(65, 65, 65);
+  border: rgb(65, 65, 65);
   cursor: pointer;
 }
 
 #list-packages button:hover,
 #list-packages button:focus,
-#list-packages button:active { color: #343a40 !important; }
-
-.badge { 
-  cursor: pointer;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important; 
+#list-packages button:active {
+  color: #343a40 !important;
 }
 
-.badge-pill { 
+.badge {
+  cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+.badge-pill {
   background-color: #e4e4e4 !important;
   color: #8a8a8a !important;
   font-size: 10px;
   font-weight: 100;
-  box-shadow: none !important; 
+  box-shadow: none !important;
   cursor: initial;
 }
 
@@ -108,14 +129,30 @@ label { color: #a2a2a2; }
   text-decoration: none !important;
 }
 
-.font-s12 { font-size: 12px !important; }
-.font-s14 { font-size: 14px !important; }
-.display-5 { font-size: 30px; }
+.font-s12 {
+  font-size: 12px !important;
+}
 
-.p-w { padding: 10px 130px;}
+.font-s14 {
+  font-size: 14px !important;
+}
 
-.list-categories { display: none; }
-#list-categories { max-height: 800px; overflow: auto; }
+.display-5 {
+  font-size: 30px;
+}
+
+.p-w {
+  padding: 10px 130px;
+}
+
+.list-categories {
+  display: none;
+}
+
+#list-categories {
+  max-height: 800px;
+  overflow: auto;
+}
 
 canvas {
   background-color: white;
@@ -142,15 +179,30 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
-  
-  .w-25, .w-50, .w-75 { width: 100% !important; }
-  .p-w { padding: 10px 20px !important; width: 100% !important; }
 
-  .list-categories { display: block; }
+  .w-25,
+  .w-50,
+  .w-75 {
+    width: 100% !important;
+  }
 
-  .badge-pill, #list-categories { display: none; }
+  .p-w {
+    padding: 10px 20px !important;
+    width: 100% !important;
+  }
 
-  .display-5 { font-size: 22px; }  
+  .list-categories {
+    display: block;
+  }
+
+  .badge-pill,
+  #list-categories {
+    display: none;
+  }
+
+  .display-5 {
+    font-size: 22px;
+  }
 
   footer p {
     line-height: 20px;
@@ -158,7 +210,11 @@ footer {
 }
 
 @media (min-width: 576px) {
-.modal-dialog-scrollable { max-height: 100%;} 
+  .modal-dialog-scrollable {
+    max-height: 100%;
+  }
 }
 
-.modal-dialog-scrollable { max-height: 100%;}
+.modal-dialog-scrollable {
+  max-height: 100%;
+}
