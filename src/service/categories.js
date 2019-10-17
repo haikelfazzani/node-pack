@@ -20,6 +20,6 @@ const categories = [
   "text & image",
   "utility",
   "web-frameworks"
-];
+]
 
 export default categories
