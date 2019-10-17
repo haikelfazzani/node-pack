@@ -18,4 +18,4 @@ function formatDate(date) { // 2019-05-26T04:25:34.606Z
   return date[2] + " " + months[+date[1] - 1] + ", " + date[0];
 }
 
-export { formatDate };
+export { formatDate }

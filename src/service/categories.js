@@ -22,4 +22,4 @@ const categories = [
   "web-frameworks"
 ];
 
-export default categories;
+export default categories

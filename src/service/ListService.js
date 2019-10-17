@@ -24,4 +24,4 @@ function formatDownload(a) {
   return s.split("").reverse().join("");
 }
 
-export { sortByPopularity, dataSlice, formatDownload };
+export { sortByPopularity, dataSlice, formatDownload }

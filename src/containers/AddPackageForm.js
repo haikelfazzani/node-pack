@@ -11,11 +11,10 @@ import CaptchaVerif from '../containers/CaptchaVerif';
 import notifier from "simple-react-notifications";
 import "simple-react-notifications/dist/index.css";
 
-
 notifier.configure({
   position: "top-right",
   animation: {
-    duration: 2000 // overriding the default(300ms) value
+    duration: 2000
   }
 });
 
@@ -61,10 +60,8 @@ export default class AddPackageForm extends React.Component {
               serverResp: res.data,
               libname: "", link: "", captchatText: ""
             });
-
       
-            notifier.success(libname + " package has been added successfully" || res.data.err);
-            
+            notifier.success(libname + " package has been added successfully" || res.data.err);          
           })
           .catch(err => err);
       }
