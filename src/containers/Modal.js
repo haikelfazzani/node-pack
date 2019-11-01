@@ -14,7 +14,7 @@ export default class Modal extends React.Component {
 
   state = { packageDetails: this.props.p, details: {}, downloads: {}, loading: true }
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps (props) {
     this.setState({ packageDetails: props.p });
 
     if (props.p.package && props.p.package.length > 0) {
@@ -31,7 +31,7 @@ export default class Modal extends React.Component {
     }
   }
 
-  render() {
+  render () {
     let { packageDetails, details, downloads, loading } = this.state;
 
     return (
@@ -46,32 +46,30 @@ export default class Modal extends React.Component {
                 <div className="modal-header">
 
                   <h5 className="modal-title text-uppercase">
-                    <span className="mr-2">{packageDetails.package} </span>
+                    <span className="mr-2"><i className="fas fa-box-open"></i> {packageDetails.package} </span>
                     <img src={npmEndPoints.minified + packageDetails.package} alt="package size" />
-                    <p className="text-muted font-s14 m-0 p-0">
-
-                      <span className="badge badge-info mr-2">
+                    <div>
+                      <p className="text-muted font-s14 m-0 p-0">
+                        {details.collected.metadata.description}
+                      </p>
+                    </div>
+                    
+                    <p className="text-muted font-s14 m-0 p-0 mt-2">
+                      <span className="badge badge-danger mr-2 py-1 font-s12 font-weight-normal">
                         {"v" + details.collected.metadata.version}
                       </span>
-                      <span className="badge badge-info mr-2">
+                      <span className="badge badge-info mr-2 py-1 font-s12 font-weight-normal">
                         {"last publish : " + formatDate(details.collected.metadata.date)}
                       </span>
 
-                      <span className="badge badge-danger">
+                      <span className="badge badge-dark py-1 font-s12 font-weight-normal">
                         N°dependencies : {
                           details.collected.metadata.dependencies
                             ? Object.keys(details.collected.metadata.dependencies).length
                             : 0
                         }
                       </span>
-
-
-                    </p>
-                    <div>
-                      <p className="text-muted font-s14 m-0 p-0">
-                        {details.collected.metadata.description}
-                      </p>
-                    </div>
+                    </p>                    
                   </h5>
 
                   <button type="button" className="close"
@@ -85,6 +83,7 @@ export default class Modal extends React.Component {
 
                   <ul className="list-group">
                     <LiBadge
+                      faIcon="fas fa-download"
                       text="weekly downloads"
                       badgeText={formatDownload(downloads.downloads)}
                     />
@@ -92,26 +91,31 @@ export default class Modal extends React.Component {
                     {details.collected.github &&
                       (<>
                         <LiBadge
+                          faIcon="fas fa-star"
                           text="stars"
                           badgeText={formatDownload(details.collected.github.starsCount)}
                         />
 
                         <LiBadge
+                          faIcon="fas fa-share-alt"
                           text="forks"
                           badgeText={formatDownload(details.collected.github.forksCount)}
                         />
 
                         <LiBadge
+                          faIcon="fas fa-bomb"
                           text="issues"
                           badgeText={formatDownload(details.collected.github.issues.count)}
                         />
 
                         <LiBadge
+                          faIcon="fas fa-folder-open"
                           text="open issues"
                           badgeText={formatDownload(details.collected.github.issues.openCount)}
                         />
 
                         <LiBadge
+                          faIcon="fas fa-gavel"
                           text="license"
                           badgeText={details.collected.metadata.license}
                         />

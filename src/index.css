@@ -17,7 +17,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 a {
   text-decoration: none !important;
 }
@@ -64,6 +63,7 @@ label {
 }
 
 .jumbotron {
+  padding: 2.5rem 2rem;
   background-color: #343a40 !important;
   color: #ffffff !important;
   border-radius: 0;

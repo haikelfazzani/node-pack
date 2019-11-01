@@ -11,7 +11,7 @@ export default function Footer() {
 
         <div className="col-md-6">
           <p className="text-muted font-s14">
-            CREATED BY <ExternalLink
+            CREATED WITH ❤️ BY <ExternalLink
               link="https://github.com/haikelfazzani"
               text="HAIKEL FAZZANI" />
           </p>

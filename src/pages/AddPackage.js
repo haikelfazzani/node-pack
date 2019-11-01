@@ -15,15 +15,11 @@ export default function AddPackage() {
 
   return (
     <div className="container py-5 w-50 mx-auto">
-
       <Helmet>
         <meta charSet="utf-8" />
         <title>NodePack - add package</title>
       </Helmet>
-
       <AddPackageHeader />
-
       <AddPackageForm />
-
     </div>)
 }
